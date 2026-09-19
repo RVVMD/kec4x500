@@ -73,6 +73,18 @@ n_ts = 2                        # число трансформаторов
 n_g_rusn_var1 = 0               # генераторов на РУСН
 n_g_rusn_var2 = 1
 
+# капиталовложения
+k_bt_500 = 585                  # блочный трансформатор 500 кВ, тыс. у.е.
+k_bt_220 = 450                  # блочный трансформатор 220 кВ, тыс. у.е.
+k_at_var1 = 600                 # автотрансформатор вар. 1, тыс. у.е.
+k_at_unit = 292                 # однофазный автотрансформатор, тыс. у.е.
+k_q_500 = 170                   # ячейка 500 кВ, тыс. у.е.
+k_q_220 = 100                   # ячейка 220 кВ, тыс. у.е.
+
+# издержки
+ko_220 = 2.9                    # обслуживание, %
+ka_220 = 2                      # амортизация, %
+
 # число с запятой
 def dec(value, digits=None, sig=None):
 	d = Decimal(str(value))
@@ -98,6 +110,38 @@ snb_tb_rem = p_nom_g / (cosf_g * k_per)
 snb_tb_max = max(snb_tb_norm, snb_tb_rem)
 ssn = p_nom_g * pmax_pust / 100
 p_per_ts = [p_ng_rusn - n * p_nom_g for n in range(4)]
+
+# мощности нагрузок
+s_ng_rusn_zim = [p * p_ng_rusn / (100 * cosf_ng_rusn) for p in load_rusn_zim]
+s_ng_rusn_let = [p * p_ng_rusn / (100 * cosf_ng_rusn) for p in load_rusn_let]
+s_ng_g_zim = [p * p_nom_g / (100 * cosf_g) for p in load_gen_zim]
+s_ng_g_let = [p * p_nom_g / (100 * cosf_g) for p in load_gen_let]
+
+# перетоки через трансформаторы связи
+s_per_ts_zim_var1 = [n_g_rusn_var1 * (a - ssn) - b for a, b in zip(s_ng_g_zim, s_ng_rusn_zim)]
+s_per_ts_let_var1 = [n_g_rusn_var1 * (a - ssn) - b for a, b in zip(s_ng_g_let, s_ng_rusn_let)]
+s_per_ts_zim_var2 = [n_g_rusn_var2 * (a - ssn) - b for a, b in zip(s_ng_g_zim, s_ng_rusn_zim)]
+s_per_ts_let_var2 = [n_g_rusn_var2 * (a - ssn) - b for a, b in zip(s_ng_g_let, s_ng_rusn_let)]
+
+# автотрансформаторы
+snb = abs(s_per_ts_zim_var1[10])
+snb_nt = snb / n_ts
+snom_at_var1 = 400
+h_stroke = 16
+s_one = (sum(v ** 2 * 2 for v in s_per_ts_zim_var1[:4]) / 8) ** 0.5
+s_two = (sum(v ** 2 * 2 for v in s_per_ts_zim_var1[4:]) / h_stroke) ** 0.5
+k_one = s_one / snom_at_var1
+k_two_stroke = s_two / snom_at_var1
+k_max = snb / snom_at_var1
+k_two = k_max * 0.9
+h_coef = k_two_stroke ** 2 * h_stroke / (0.9 * k_max) ** 2
+k_dop_sist_per = 1.23
+k_dop_av_per = 1.5
+
+# капиталовложения
+k_at_var2 = 3 * k_at_unit
+k_var1 = 4 * k_bt_500 + 6 * k_q_500 + 2 * k_at_var1 + 2 * k_q_220
+k_var2 = 3 * k_bt_500 + 5 * k_q_500 + 2 * k_at_var2 + 1 * k_bt_220 + 3 * k_q_220
 
 # таблица значений
 TEX = {
@@ -147,6 +191,30 @@ TEX = {
 	"NGRusnVarOne": str(n_g_rusn_var1),
 	"NGRusnVarTwo": str(n_g_rusn_var2),
 	"SSN": str(int(ssn)),
+	"ZimPerTsVarOneTen": dec(s_per_ts_zim_var1[10], 3),
+	"Snb": dec(snb, 3),
+	"SnbNt": dec(snb_nt, 3),
+	"SnomATVarOne": str(snom_at_var1),
+	"HStroke": str(h_stroke),
+	"SOne": dec(s_one, 3),
+	"STwoPrime": dec(s_two, 2),
+	"KOne": dec(k_one, 3),
+	"KTwoPrime": dec(k_two_stroke, 3),
+	"KMax": dec(k_max, 3),
+	"KTwo": dec(k_two, 3),
+	"HCoef": dec(h_coef, 3),
+	"KDopSistPer": dec(k_dop_sist_per, 2),
+	"KDopAvPer": dec(k_dop_av_per, 1),
+	"KbtRUVN": str(k_bt_500),
+	"KbtRUSN": str(k_bt_220),
+	"KatVarOne": str(k_at_var1),
+	"KatVarTwo": str(k_at_var2),
+	"KqRUVN": str(k_q_500),
+	"KqRUSN": str(k_q_220),
+	"KVarOne": str(k_var1),
+	"KVarTwo": str(k_var2),
+	"KoRUSN": dec(ko_220, 1),
+	"KaRUSN": str(ka_220),
 }
 
 print(r"\(" + "".join(r"\def\%s{%s}" % (k, v) for k, v in TEX.items()) + r"\)")
@@ -341,3 +409,110 @@ $$
 ![Переток мощности через трансформаторы связи, вариант 1](assets/img/perets-var1.svg)
 
 *Рис. 7. Переток мощности через трансформаторы связи, вариант 1*
+
+![Переток мощности через трансформаторы связи, вариант 2](assets/img/perets-var2.svg)
+
+*Рис. 8. Переток мощности через трансформаторы связи, вариант 2*
+
+### Выбор автотрансформаторов связи
+
+Для варианта 2 (1 генератор на РУСН) окончательно выбираем группу из трёх
+однофазных автотрансформаторов АОДЦТН-267000/500/220.
+
+Для варианта 1 (0 генераторов на РУСН) в нормальном режиме наибольший переток
+определяется по зимнему графику:
+
+$$
+S_{\text{нб}} = \left| \left( S^{\text{зим.}}_{\text{пер.тс.вар1}} \right)_{10} \right|
+= \left| \ZimPerTsVarOneTen \right| = \Snb\ \text{МВА}
+$$
+
+Мощность автотрансформатора принимается не менее
+
+$$
+S_{\text{ном.АТ.вар1}} \ge \frac{S_{\text{нб}}}{n_{\text{т}}}
+= \frac{\Snb}{\NTS} = \SnbNt\ \text{МВА};
+\qquad S_{\text{ном.АТ.вар1}} = \SnomATVarOne\ \text{МВА}
+$$
+
+Приведённое число часов $h' = \HStroke$.
+
+Эквивалентные ступени графика:
+
+$$
+S_1 = \sqrt{\frac{\sum\limits_{t=0}^{3}
+\left[ \left( S^{\text{зим.}}_{\text{пер.тс.вар1}} \right)_t^2 \cdot 2 \right]}{8}}
+= \SOne\ \text{МВА}
+$$
+
+$$
+S'_2 = \sqrt{\frac{\sum\limits_{t=4}^{11}
+\left[ \left( S^{\text{зим.}}_{\text{пер.тс.вар1}} \right)_t^2 \cdot 2 \right]}{h'}}
+= \STwoPrime\ \text{МВА}
+$$
+
+Коэффициенты начальной нагрузки:
+
+$$
+K_1 = \frac{S_1}{S_{\text{ном.АТ.вар1}}}
+= \frac{\SOne}{\SnomATVarOne} = \KOne
+$$
+
+$$
+K'_2 = \frac{S'_2}{S_{\text{ном.АТ.вар1}}}
+= \frac{\STwoPrime}{\SnomATVarOne} = \KTwoPrime
+$$
+
+$$
+K_{\max} = \frac{S_{\text{нб}}}{S_{\text{ном.АТ.вар1}}}
+= \frac{\Snb}{\SnomATVarOne} = \KMax
+$$
+
+$$
+K_2 = K_{\max} \cdot 0{,}9 = \KMax \cdot 0{,}9 = \KTwo
+$$
+
+$$
+h = \frac{(K'_2)^2 \cdot h'}{(0{,}9 \cdot K_{\max})^2}
+= \frac{(\KTwoPrime)^2 \cdot \HStroke}{(0{,}9 \cdot \KMax)^2} = \HCoef
+$$
+
+Допустимые коэффициенты перегрузки:
+
+$$
+k_{\text{доп.сист.пер}} = \KDopSistPer; \qquad k_{\text{доп.ав.пер}} = \KDopAvPer
+$$
+
+Окончательно выбираем АТДЦТН-400000/500/220.
+
+### Капиталовложения
+
+| Обозначение | Значение, тыс. у.е. |
+| :--: | :--: |
+| $K_{\text{бл.500}}$ | $\KbtRUVN$ |
+| $K_{\text{бл.220}}$ | $\KbtRUSN$ |
+| $K_{\text{ат.вар1}}$ | $\KatVarOne$ |
+| $K_{\text{ат.вар2}}$ | $\KatVarTwo$ |
+| $K_{\text{q.500}}$ | $\KqRUVN$ |
+| $K_{\text{q.220}}$ | $\KqRUSN$ |
+
+Вариант 1 (0 генераторов на РУСН):
+
+$$
+K_{\text{вар1}} = 4 \cdot \KbtRUVN + 6 \cdot \KqRUVN + 2 \cdot \KatVarOne + 2 \cdot \KqRUSN
+= \KVarOne\ \text{тыс. у.е.}
+$$
+
+Вариант 2 (1 генератор на РУСН):
+
+$$
+K_{\text{вар2}} = 3 \cdot \KbtRUVN + 5 \cdot \KqRUVN + 2 \cdot \KatVarTwo
++ 1 \cdot \KbtRUSN + 3 \cdot \KqRUSN
+= \KVarTwo\ \text{тыс. у.е.}
+$$
+
+### Издержки на обслуживание и амортизацию
+
+$$
+K_{\text{о.220}} = \KoRUSN\ \%; \qquad K_{\text{а.220}} = \KaRUSN\ \%
+$$

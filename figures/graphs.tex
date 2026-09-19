@@ -229,4 +229,49 @@ h P
 \addlegendentry{Лето}
 \end{axis}
 \end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm, height=6.5cm,
+  xlabel={$t$, ч}, ylabel={$S$, МВА},
+  xmin=0, xmax=24, ymin=-600, ymax=600,
+  xtick={0,4,...,24}, grid=major,
+  legend pos=north east, legend cell align=left,
+  every axis plot/.append style={line width=1pt},
+]
+\addplot[black, , const plot] table[x=h, y=s] {
+h s
+0 56.765
+2 56.765
+4 56.765
+6 174.412
+8 120.294
+10 120.294
+12 120.294
+14 120.294
+16 12.059
+18 12.059
+20 12.059
+22 2.647
+24 2.647
+};
+\addlegendentry{Зима}
+\addplot[black, dashed, const plot] table[x=h, y=s] {
+h s
+0 141.471
+2 141.471
+4 141.471
+6 141.471
+8 87.353
+10 87.353
+12 87.353
+14 87.353
+16 33.235
+18 33.235
+20 33.235
+22 33.235
+24 33.235
+};
+\addlegendentry{Лето}
+\end{axis}
+\end{tikzpicture}
 \end{document}
