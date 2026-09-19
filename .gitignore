@@ -1,0 +1,6 @@
+# сборка сайта
+site/
+
+# кэш Python
+__pycache__/
+*.pyc
