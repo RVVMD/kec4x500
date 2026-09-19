@@ -4,12 +4,11 @@
 
 Сайт:
 
-- Python 3
 - `mkdocs`
 - `markdown-exec` — выполняет Python-блоки в Markdown
 - `pymdown-extensions` — расширения Markdown (формулы, таблицы)
 
-Установка (Fedora):
+Установка (dnf):
 
 ```bash
 sudo dnf install mkdocs python3-markdown-exec python3-pymdown-extensions
@@ -21,7 +20,7 @@ sudo dnf install mkdocs python3-markdown-exec python3-pymdown-extensions
 pip install mkdocs markdown-exec pymdown-extensions
 ```
 
-Пересборка графиков (необязательно, для `figures/`):
+Пересборка графиков:
 
 - `lualatex` (TeX Live с пакетом `pgfplots`)
 - `mutool` (MuPDF)
@@ -30,26 +29,26 @@ pip install mkdocs markdown-exec pymdown-extensions
 sudo dnf install texlive-scheme-medium mupdf-tools
 ```
 
-## Структура проекта
+## Структура
 
 ```
 kec4x500/
-├── mkdocs.yml            # конфигурация сайта
+├── mkdocs.yml             # конфигурация сайта
 ├── docs/
-│   ├── index.md          # весь документ: текст, формулы, расчёт
+│   ├── index.md           # документ
 │   ├── js/
-│   │   └── tex-mml-svg.js   # MathJax (локальная копия, работает офлайн)
-│   └── assets/img/       # рисунки: графики (SVG) и схемы (PNG)
+│   │   └── tex-mml-svg.js # MathJax (локальная копия)
+│   └── assets/img/        # рисунки: графики (SVG) и схемы (PNG)
 ├── figures/
-│   ├── graphs.tex        # исходники графиков (TikZ/pgfplots)
-│   └── build.sh          # сборка графиков → docs/assets/img
+│   ├── graphs.tex         # исходники графиков (TikZ/pgfplots)
+│   └── build.sh           # сборка графиков docs/assets/img
 ├── .gitignore
 └── README.md
 ```
 
-## Базовые команды
+## Использование
 
-Запустить локально (открыть http://127.0.0.1:8000):
+Запустить локально (http://127.0.0.1:8000):
 
 ```bash
 python3 -m mkdocs serve
@@ -60,6 +59,3 @@ python3 -m mkdocs serve
 ```bash
 sh figures/build.sh
 ```
-
-> Если команда `mkdocs` доступна напрямую, вместо `python3 -m mkdocs` можно
-> писать просто `mkdocs`.
