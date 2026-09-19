@@ -1,0 +1,21 @@
+site_name: КЭС 4×500 — расчёт
+
+theme:
+  name: readthedocs
+
+plugins:
+  - search
+  - markdown-exec
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - pymdownx.details
+  - footnotes
+  - toc:
+      permalink: true
+
+nav:
+  - Расчёт: index.md

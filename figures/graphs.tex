@@ -1,0 +1,232 @@
+\documentclass[multi=tikzpicture]{standalone}
+\usepackage{fontspec}
+\setmainfont{DejaVu Serif}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm, height=6.5cm,
+  xlabel={$t$, ч}, ylabel={$P$, \%},
+  xmin=0, xmax=24, ymin=0, ymax=120,
+  xtick={0,4,...,24}, grid=major,
+  legend pos=south east, legend cell align=left,
+  every axis plot/.append style={line width=1pt},
+]
+\addplot[black, , const plot] table[x=h, y expr={\thisrow{P}}] {
+h P
+0 70
+2 70
+4 70
+6 70
+8 80
+10 80
+12 80
+14 80
+16 100
+18 100
+20 100
+22 80
+24 80
+};
+\addlegendentry{Зима}
+\addplot[black, dashed, const plot] table[x=h, y expr={\thisrow{P}}] {
+h P
+0 50
+2 50
+4 50
+6 50
+8 60
+10 60
+12 60
+14 60
+16 70
+18 70
+20 70
+22 70
+24 70
+};
+\addlegendentry{Лето}
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm, height=6.5cm,
+  xlabel={$t$, ч}, ylabel={$P$, \%},
+  xmin=0, xmax=24, ymin=0, ymax=120,
+  xtick={0,4,...,24}, grid=major,
+  legend pos=south east, legend cell align=left,
+  every axis plot/.append style={line width=1pt},
+]
+\addplot[black, , const plot] table[x=h, y expr={\thisrow{P}}] {
+h P
+0 80
+2 80
+4 80
+6 100
+8 100
+10 100
+12 100
+14 100
+16 100
+18 100
+20 100
+22 80
+24 80
+};
+\addlegendentry{Зима}
+\addplot[black, dashed, const plot] table[x=h, y expr={\thisrow{P}}] {
+h P
+0 76
+2 76
+4 76
+6 76
+8 76
+10 76
+12 76
+14 76
+16 76
+18 76
+20 76
+22 76
+24 76
+};
+\addlegendentry{Лето}
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm, height=6.5cm,
+  xlabel={$i \cdot 2$}, ylabel={$S$, МВА},
+  xmin=0, xmax=24, ymin=0, ymax=1000,
+  xtick={0,4,...,24}, grid=major,
+  legend pos=south east, legend cell align=left,
+  every axis plot/.append style={line width=1pt},
+]
+\addplot[black, , const plot] table[x=h, y expr={\thisrow{P}*500/85}] {
+h P
+0 80
+2 80
+4 80
+6 100
+8 100
+10 100
+12 100
+14 100
+16 100
+18 100
+20 100
+22 80
+24 80
+};
+\addlegendentry{Зима}
+\addplot[black, dashed, const plot] table[x=h, y expr={\thisrow{P}*500/85}] {
+h P
+0 76
+2 76
+4 76
+6 76
+8 76
+10 76
+12 76
+14 76
+16 76
+18 76
+20 76
+22 76
+24 76
+};
+\addlegendentry{Лето}
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm, height=6.5cm,
+  xlabel={$i \cdot 2$}, ylabel={$S$, МВА},
+  xmin=0, xmax=24, ymin=0, ymax=1000,
+  xtick={0,4,...,24}, grid=major,
+  legend pos=south east, legend cell align=left,
+  every axis plot/.append style={line width=1pt},
+]
+\addplot[black, , const plot] table[x=h, y expr={\thisrow{P}*460/85}] {
+h P
+0 70
+2 70
+4 70
+6 70
+8 80
+10 80
+12 80
+14 80
+16 100
+18 100
+20 100
+22 80
+24 80
+};
+\addlegendentry{Зима}
+\addplot[black, dashed, const plot] table[x=h, y expr={\thisrow{P}*460/85}] {
+h P
+0 50
+2 50
+4 50
+6 50
+8 60
+10 60
+12 60
+14 60
+16 70
+18 70
+20 70
+22 70
+24 70
+};
+\addlegendentry{Лето}
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm, height=6.5cm,
+  xlabel={$t$, ч}, ylabel={$S$, МВА},
+  xmin=0, xmax=24, ymin=-600, ymax=600,
+  xtick={0,4,...,24}, grid=major,
+  legend pos=north east, legend cell align=left,
+  every axis plot/.append style={line width=1pt},
+]
+\addplot[black, , const plot] table[x=h, y expr={-\thisrow{P}*460/85}] {
+h P
+0 70
+2 70
+4 70
+6 70
+8 80
+10 80
+12 80
+14 80
+16 100
+18 100
+20 100
+22 80
+24 80
+};
+\addlegendentry{Зима}
+\addplot[black, dashed, const plot] table[x=h, y expr={-\thisrow{P}*460/85}] {
+h P
+0 50
+2 50
+4 50
+6 50
+8 60
+10 60
+12 60
+14 60
+16 70
+18 70
+20 70
+22 70
+24 70
+};
+\addlegendentry{Лето}
+\end{axis}
+\end{tikzpicture}
+\end{document}
