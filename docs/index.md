@@ -5,6 +5,7 @@
 table th, table td { text-align: center; }
 .rst-content img { display: block; margin: 1.5em auto 0.5em; max-width: 100%; height: auto; }
 .rst-content p > em:only-child { display: block; text-align: center; margin-top: 0; }
+.rst-content div.arithmatex { overflow-x: auto; overflow-y: hidden; }
 </style>
 
 <script>
@@ -28,20 +29,18 @@ window.MathJax = {
 ```python exec="on" session="model"
 from decimal import ROUND_HALF_UP, Decimal
 
-# данные
-
 # генератор
 p_nom_g = 500                   # мощность, МВт
 u_nom_g = 20                    # напряжение, кВ
-cosf_g = 0.85                   # косинус
+cosf_g = 0.85
 xd2_g = 0.242                   # сопротивление, о.е.
 r_g = 0.00114                   # сопротивление, Ом
-n_g = 4                         # сколько штук
+n_g = 4
 
 # свои нужды
 pmax_pust = 7                   # нагрузка, %
 u_nom_sn = 6                    # напряжение, кВ
-cosf_sn = 0.85                  # косинус
+cosf_sn = 0.85
 
 # шины 500 кВ
 u_nom_ruvn = 500                # напряжение, кВ
@@ -56,7 +55,7 @@ l_ruvn = [500, 800, 600, 700]   # длины линий, км
 # шины 220 кВ
 u_nom_rusn = 220                # напряжение, кВ
 p_ng_rusn = 460                 # нагрузка, МВт
-cosf_ng_rusn = 0.85             # косинус
+cosf_ng_rusn = 0.85
 l_rusn = [500, 800, 600, 700]   # длины линий, км
 
 # графики
@@ -68,9 +67,9 @@ load_gen_zim = [80, 80, 80, 100, 100, 100, 100, 100, 100, 100, 100, 80]
 load_gen_let = [76] * 12
 
 # прочее
-k_per = 1                       # перегрузка
-n_ts = 2                        # число трансформаторов
-n_g_rusn_var1 = 0               # генераторов на РУСН
+k_per = 1
+n_ts = 2
+n_g_rusn_var1 = 0
 n_g_rusn_var2 = 1
 
 # капиталовложения
@@ -103,7 +102,6 @@ def col(values):
 	return r" \\ ".join(str(v) for v in values)
 
 
-# расчёты
 p_two_gen = p_nom_g * 2
 snb_tb_norm = (p_nom_g - p_nom_g * pmax_pust / 100) / (cosf_g * k_per)
 snb_tb_rem = p_nom_g / (cosf_g * k_per)
@@ -143,7 +141,6 @@ k_at_var2 = 3 * k_at_unit
 k_var1 = 4 * k_bt_500 + 6 * k_q_500 + 2 * k_at_var1 + 2 * k_q_220
 k_var2 = 3 * k_bt_500 + 5 * k_q_500 + 2 * k_at_var2 + 1 * k_bt_220 + 3 * k_q_220
 
-# таблица значений
 TEX = {
 	"PnomG": str(p_nom_g),
 	"UnomG": str(u_nom_g),
@@ -192,6 +189,9 @@ TEX = {
 	"NGRusnVarTwo": str(n_g_rusn_var2),
 	"SSN": str(int(ssn)),
 	"ZimPerTsVarOneTen": dec(s_per_ts_zim_var1[10], 3),
+	"SPerTsLow": dec(s_ng_rusn_zim[0], 3),
+	"SPerTsMid": dec(s_ng_rusn_zim[4], 3),
+	"SPerTsHigh": dec(s_ng_rusn_zim[8], 3),
 	"Snb": dec(snb, 3),
 	"SnbNt": dec(snb_nt, 3),
 	"SnomATVarOne": str(snom_at_var1),
@@ -442,12 +442,14 @@ $$
 $$
 S_1 = \sqrt{\frac{\sum\limits_{t=0}^{3}
 \left[ \left( S^{\text{зим.}}_{\text{пер.тс.вар1}} \right)_t^2 \cdot 2 \right]}{8}}
+= \sqrt{\frac{4 \cdot \SPerTsLow^2 \cdot 2}{8}}
 = \SOne\ \text{МВА}
 $$
 
 $$
 S'_2 = \sqrt{\frac{\sum\limits_{t=4}^{11}
 \left[ \left( S^{\text{зим.}}_{\text{пер.тс.вар1}} \right)_t^2 \cdot 2 \right]}{h'}}
+= \sqrt{\frac{\left(5 \cdot \SPerTsMid^2 + 3 \cdot \SPerTsHigh^2\right) \cdot 2}{\HStroke}}
 = \STwoPrime\ \text{МВА}
 $$
 
