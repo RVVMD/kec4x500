@@ -84,6 +84,17 @@ k_q_220 = 100                   # ячейка 220 кВ, тыс. у.е.
 ko_220 = 2.9                    # обслуживание, %
 ka_220 = 2                      # амортизация, %
 
+# потери
+phh_bt_500 = 420                # х.х. блочного 500 кВ, кВт
+phh_bt_220 = 345                # х.х. блочного 220 кВ, кВт
+phh_at_var1 = 220               # х.х. автотрансформатора вар. 1, кВт
+phh_at_unit = 125               # х.х. однофазного, кВт
+pkz_bt_500 = 1210               # к.з. блочного 500 кВ, кВт
+pkz_bt_220 = 1300               # к.з. блочного 220 кВ, кВт
+pkz_at_var1 = 1050              # к.з. автотрансформатора вар. 1, кВт
+pkz_at_unit = 470               # к.з. однофазного, кВт
+s_nom_bt_500 = 630              # блочный трансформатор 500 кВ, МВА
+
 # число с запятой
 def dec(value, digits=None, sig=None):
 	d = Decimal(str(value))
@@ -100,6 +111,19 @@ def dec(value, digits=None, sig=None):
 # столбик чисел
 def col(values):
 	return r" \\ ".join(str(v) for v in values)
+
+
+# 3 значащие цифры
+def sf(value, n=3):
+	d = Decimal(str(value))
+	if d == 0:
+		return "0"
+	exp = d.adjusted()
+	q = d.quantize(Decimal(1).scaleb(exp - n + 1), rounding=ROUND_HALF_UP)
+	text = format(q, "f")
+	if "." in text:
+		text = text.rstrip("0").rstrip(".")
+	return text.replace(".", "{,}")
 
 
 p_two_gen = p_nom_g * 2
@@ -141,6 +165,23 @@ k_at_var2 = 3 * k_at_unit
 k_var1 = 4 * k_bt_500 + 6 * k_q_500 + 2 * k_at_var1 + 2 * k_q_220
 k_var2 = 3 * k_bt_500 + 5 * k_q_500 + 2 * k_at_var2 + 1 * k_bt_220 + 3 * k_q_220
 
+# издержки на обслуживание и амортизацию
+i_o_a_var1 = k_var1 * (ko_220 + ka_220) / 100
+i_o_a_var2 = k_var2 * (ko_220 + ka_220) / 100
+
+# потери
+g_p_ng_g_zim = [p * p_nom_g / 100 for p in load_gen_zim]
+g_p_ng_g_let = [p * p_nom_g / 100 for p in load_gen_let]
+tnb = (sum(v * 2 for v in g_p_ng_g_zim) * d_zim + sum(v * 2 for v in g_p_ng_g_let) * d_let) / p_nom_g
+tau = tnb / 3 + 2 * tnb ** 2 / (3 * 8760)
+phh_at_var2 = 3 * phh_at_unit
+pkz_at_var2 = 3 * pkz_at_unit
+whh_var1 = 4 * phh_bt_500 * tnb + 2 * phh_at_var1 * 8760
+whh_var2 = 3 * phh_bt_500 * tnb + 1 * phh_bt_220 * tnb + 2 * phh_at_var2 * 8760
+wkz_bt_500_var1 = (sum((v / s_nom_bt_500) ** 2 * 2 for v in s_ng_g_zim) * d_zim
+	+ sum((v / s_nom_bt_500) ** 2 * 2 for v in s_ng_g_let) * d_let) * 4 * pkz_bt_500
+wkz_bt_220_var1 = 0
+
 TEX = {
 	"PnomG": str(p_nom_g),
 	"UnomG": str(u_nom_g),
@@ -177,9 +218,9 @@ TEX = {
 	"LoadGenLet": col(load_gen_let),
 	"Kper": str(k_per),
 	"PTwoGen": str(p_two_gen),
-	"SBlTrNorm": dec(snb_tb_norm, 3),
-	"SBlTrRem": dec(snb_tb_rem, 3),
-	"SBlTrMax": dec(snb_tb_max, 3),
+	"SBlTrNorm": sf(snb_tb_norm),
+	"SBlTrRem": sf(snb_tb_rem),
+	"SBlTrMax": sf(snb_tb_max),
 	"NTS": str(n_ts),
 	"PPerTsZero": str(p_per_ts[0]),
 	"PPerTsOne": str(p_per_ts[1]),
@@ -188,21 +229,21 @@ TEX = {
 	"NGRusnVarOne": str(n_g_rusn_var1),
 	"NGRusnVarTwo": str(n_g_rusn_var2),
 	"SSN": str(int(ssn)),
-	"ZimPerTsVarOneTen": dec(s_per_ts_zim_var1[10], 3),
-	"SPerTsLow": dec(s_ng_rusn_zim[0], 3),
-	"SPerTsMid": dec(s_ng_rusn_zim[4], 3),
-	"SPerTsHigh": dec(s_ng_rusn_zim[8], 3),
-	"Snb": dec(snb, 3),
-	"SnbNt": dec(snb_nt, 3),
+	"ZimPerTsVarOneTen": sf(s_per_ts_zim_var1[10]),
+	"SPerTsLow": sf(s_ng_rusn_zim[0]),
+	"SPerTsMid": sf(s_ng_rusn_zim[4]),
+	"SPerTsHigh": sf(s_ng_rusn_zim[8]),
+	"Snb": sf(snb),
+	"SnbNt": sf(snb_nt),
 	"SnomATVarOne": str(snom_at_var1),
 	"HStroke": str(h_stroke),
-	"SOne": dec(s_one, 3),
-	"STwoPrime": dec(s_two, 2),
-	"KOne": dec(k_one, 3),
-	"KTwoPrime": dec(k_two_stroke, 3),
-	"KMax": dec(k_max, 3),
-	"KTwo": dec(k_two, 3),
-	"HCoef": dec(h_coef, 3),
+	"SOne": sf(s_one),
+	"STwoPrime": sf(s_two),
+	"KOne": sf(k_one),
+	"KTwoPrime": sf(k_two_stroke),
+	"KMax": sf(k_max),
+	"KTwo": sf(k_two),
+	"HCoef": sf(h_coef),
 	"KDopSistPer": dec(k_dop_sist_per, 2),
 	"KDopAvPer": dec(k_dop_av_per, 1),
 	"KbtRUVN": str(k_bt_500),
@@ -211,10 +252,31 @@ TEX = {
 	"KatVarTwo": str(k_at_var2),
 	"KqRUVN": str(k_q_500),
 	"KqRUSN": str(k_q_220),
-	"KVarOne": str(k_var1),
-	"KVarTwo": str(k_var2),
+	"KVarOne": sf(k_var1),
+	"KVarTwo": sf(k_var2),
 	"KoRUSN": dec(ko_220, 1),
 	"KaRUSN": str(ka_220),
+	"IoAVarOne": sf(i_o_a_var1),
+	"IoAVarTwo": sf(i_o_a_var2),
+	"Tnb": dec(tnb / 1000, 2) + r"\cdot10^3",
+	"TauValue": dec(tau / 1000, 2) + r"\cdot10^3",
+	"PhhBtRUVN": str(phh_bt_500),
+	"PhhBtRUSN": str(phh_bt_220),
+	"PhhAtVarOne": str(phh_at_var1),
+	"PhhAtVarTwo": str(phh_at_var2),
+	"PkzBtRUVN": str(pkz_bt_500),
+	"PkzBtRUSN": str(pkz_bt_220),
+	"PkzAtVarOne": str(pkz_at_var1),
+	"PkzAtVarTwo": str(pkz_at_var2),
+	"WhhVarOne": dec(whh_var1 / 10**7, 2) + r"\cdot10^7",
+	"WhhVarTwo": dec(whh_var2 / 10**7, 2) + r"\cdot10^7",
+	"WkzBtRUVNVarOne": dec(wkz_bt_500_var1 / 10**7, 2) + r"\cdot10^7",
+	"WkzBtRUSNVarOne": str(wkz_bt_220_var1),
+	"SumPZim": sf(sum(g_p_ng_g_zim)),
+	"SumPLet": sf(sum(g_p_ng_g_let)),
+	"SngGZimLow": sf(s_ng_g_zim[0]),
+	"SngGZimHigh": sf(s_ng_g_zim[3]),
+	"SngGLet": sf(s_ng_g_let[0]),
 }
 
 print(r"\(" + "".join(r"\def\%s{%s}" % (k, v) for k, v in TEX.items()) + r"\)")
@@ -335,7 +397,8 @@ $$
 Мощность блочного трансформатора принимается не менее
 
 $$
-\max\left(S_{\text{бл.тр.норм}};\ S_{\text{бл.тр.рем}}\right) = \SBlTrMax\ \text{МВА}
+\max\left(S_{\text{бл.тр.норм}};\ S_{\text{бл.тр.рем}}\right)
+= \max\left(\SBlTrNorm;\ \SBlTrRem\right) = \SBlTrMax\ \text{МВА}
 $$
 
 Согласно СТО РАО ЕЭС 2007, недопустимо применять один трансформатор связи,
@@ -517,4 +580,100 @@ $$
 
 $$
 K_{\text{о.220}} = \KoRUSN\ \%; \qquad K_{\text{а.220}} = \KaRUSN\ \%
+$$
+
+$$
+I_{\text{о.а.вар1}} = K_{\text{вар1}} \cdot \frac{K_{\text{о.220}} + K_{\text{а.220}}}{100}
+= \KVarOne \cdot \frac{\KoRUSN + \KaRUSN}{100} = \IoAVarOne\ \text{тыс. у.е./год}
+$$
+
+$$
+I_{\text{о.а.вар2}} = K_{\text{вар2}} \cdot \frac{K_{\text{о.220}} + K_{\text{а.220}}}{100}
+= \KVarTwo \cdot \frac{\KoRUSN + \KaRUSN}{100} = \IoAVarTwo\ \text{тыс. у.е./год}
+$$
+
+### Издержки, связанные с потерями
+
+$$
+P^{\text{зим.}}_{\text{нг.г}} = \frac{P^{\text{зим.}}_{\text{нг.г}},\ \%}{100} \cdot P_{\text{ном.г}}
+= \frac{P^{\text{зим.}}_{\text{нг.г}},\ \%}{100} \cdot \PnomG
+$$
+
+$$
+P^{\text{лет.}}_{\text{нг.г}} = \frac{P^{\text{лет.}}_{\text{нг.г}},\ \%}{100} \cdot P_{\text{ном.г}}
+= \frac{P^{\text{лет.}}_{\text{нг.г}},\ \%}{100} \cdot \PnomG
+$$
+
+$$
+\begin{multline}
+T_{\text{нб}} = \frac{\sum\limits_{t=0}^{11}
+\left[\left(P^{\text{зим.}}_{\text{нг.г}}\right)_t \cdot 2\right] \cdot d_{\text{зим}}
++ \sum\limits_{t=0}^{11}
+\left[\left(P^{\text{лет.}}_{\text{нг.г}}\right)_t \cdot 2\right] \cdot d_{\text{лет}}}{P_{\text{ном.г}}} = \\
+= \frac{\SumPZim \cdot 2 \cdot \DZim + \SumPLet \cdot 2 \cdot \DLet}{\PnomG}
+= \Tnb\ \text{ч}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+\tau = \frac{1}{3} \cdot T_{\text{нб}} + \frac{2}{3} \cdot T_{\text{нб}}^2 \cdot \frac{1}{8760} = \\
+= \frac{1}{3} \cdot \left(\Tnb\right) + \frac{2}{3} \cdot \left(\Tnb\right)^2 \cdot \frac{1}{8760}
+= \TauValue\ \text{ч}
+\end{multline}
+$$
+
+$$
+P^{\text{бл.500}}_{\text{х.х}} = \PhhBtRUVN; \quad
+P^{\text{бл.220}}_{\text{х.х}} = \PhhBtRUSN; \quad
+P^{\text{АТ.вар1}}_{\text{х.х}} = \PhhAtVarOne; \quad
+P^{\text{АТ.вар2}}_{\text{х.х}} = \PhhAtVarTwo\ \text{кВт}
+$$
+
+$$
+P^{\text{бл.500}}_{\text{к.з}} = \PkzBtRUVN; \quad
+P^{\text{бл.220}}_{\text{к.з}} = \PkzBtRUSN; \quad
+P^{\text{АТ.вар1}}_{\text{к.з}} = \PkzAtVarOne; \quad
+P^{\text{АТ.вар2}}_{\text{к.з}} = \PkzAtVarTwo\ \text{кВт}
+$$
+
+$$
+\begin{multline}
+W^{\text{вар1}}_{\text{х.х}} = 4 \cdot P^{\text{бл.500}}_{\text{х.х}} \cdot T_{\text{нб}}
++ 2 \cdot P^{\text{АТ.вар1}}_{\text{х.х}} \cdot 8760 = \\
+= 4 \cdot \PhhBtRUVN \cdot \Tnb + 2 \cdot \PhhAtVarOne \cdot 8760
+= \WhhVarOne\ \text{кВт}\cdot\text{ч}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+W^{\text{вар2}}_{\text{х.х}} = 3 \cdot P^{\text{бл.500}}_{\text{х.х}} \cdot T_{\text{нб}}
++ 1 \cdot P^{\text{бл.220}}_{\text{х.х}} \cdot T_{\text{нб}}
++ 2 \cdot P^{\text{АТ.вар2}}_{\text{х.х}} \cdot 8760 = \\
+= 3 \cdot \PhhBtRUVN \cdot \Tnb + 1 \cdot \PhhBtRUSN \cdot \Tnb
++ 2 \cdot \PhhAtVarTwo \cdot 8760
+= \WhhVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+W^{\text{вар1}}_{\text{к.з.бл.500}} = \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}}
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right] \cdot 4 \cdot \PkzBtRUVN = \\
+= \left[
+\left(4 \cdot \left(\frac{\SngGZimLow}{630}\right)^2
++ 8 \cdot \left(\frac{\SngGZimHigh}{630}\right)^2\right) \cdot 2 \cdot \DZim
++ 12 \cdot \left(\frac{\SngGLet}{630}\right)^2 \cdot 2 \cdot \DLet
+\right] \cdot 4 \cdot \PkzBtRUVN
+= \WkzBtRUVNVarOne\ \text{кВт}\cdot\text{ч}
+\end{multline}
+$$
+
+$$
+W^{\text{вар1}}_{\text{к.з.бл.220}} = \WkzBtRUSNVarOne\ \text{кВт}\cdot\text{ч}
 $$
