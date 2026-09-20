@@ -1,4 +1,5 @@
 <style>
+.wy-nav-content { max-width: 900px; }
 .wy-table-responsive { text-align: center; }
 .wy-table-responsive > table,
 .rst-content table { display: inline-table !important; width: auto !important; margin: 1em auto !important; }
@@ -545,7 +546,7 @@ $$
 Допустимые коэффициенты перегрузки:
 
 $$
-k_{\text{доп.сист.пер}} = \KDopSistPer; \qquad k_{\text{доп.ав.пер}} = \KDopAvPer
+K^{\text{сист.пер}}_{2\text{доп}} = \KDopSistPer; \qquad K^{\text{ав.пер}}_{2\text{доп}} = \KDopAvPer
 $$
 
 Окончательно выбираем АТДЦТН-400000/500/220.
@@ -583,12 +584,12 @@ K_{\text{о.220}} = \KoRUSN\ \%; \qquad K_{\text{а.220}} = \KaRUSN\ \%
 $$
 
 $$
-I_{\text{о.а.вар1}} = K_{\text{вар1}} \cdot \frac{K_{\text{о.220}} + K_{\text{а.220}}}{100}
+\text{И}_{\text{о.а.вар1}} = K_{\text{вар1}} \cdot \frac{K_{\text{о.220}} + K_{\text{а.220}}}{100}
 = \KVarOne \cdot \frac{\KoRUSN + \KaRUSN}{100} = \IoAVarOne\ \text{тыс. у.е./год}
 $$
 
 $$
-I_{\text{о.а.вар2}} = K_{\text{вар2}} \cdot \frac{K_{\text{о.220}} + K_{\text{а.220}}}{100}
+\text{И}_{\text{о.а.вар2}} = K_{\text{вар2}} \cdot \frac{K_{\text{о.220}} + K_{\text{а.220}}}{100}
 = \KVarTwo \cdot \frac{\KoRUSN + \KaRUSN}{100} = \IoAVarTwo\ \text{тыс. у.е./год}
 $$
 
@@ -606,7 +607,7 @@ $$
 
 $$
 \begin{multline}
-T_{\text{нб}} = \frac{\sum\limits_{t=0}^{11}
+T_{\text{max}} = \frac{\sum\limits_{t=0}^{11}
 \left[\left(P^{\text{зим.}}_{\text{нг.г}}\right)_t \cdot 2\right] \cdot d_{\text{зим}}
 + \sum\limits_{t=0}^{11}
 \left[\left(P^{\text{лет.}}_{\text{нг.г}}\right)_t \cdot 2\right] \cdot d_{\text{лет}}}{P_{\text{ном.г}}} = \\
@@ -617,30 +618,30 @@ $$
 
 $$
 \begin{multline}
-\tau = \frac{1}{3} \cdot T_{\text{нб}} + \frac{2}{3} \cdot T_{\text{нб}}^2 \cdot \frac{1}{8760} = \\
+\tau = \frac{1}{3} \cdot T_{\text{max}} + \frac{2}{3} \cdot T_{\text{max}}^2 \cdot \frac{1}{8760} = \\
 = \frac{1}{3} \cdot \left(\Tnb\right) + \frac{2}{3} \cdot \left(\Tnb\right)^2 \cdot \frac{1}{8760}
 = \TauValue\ \text{ч}
 \end{multline}
 $$
 
 $$
-P^{\text{бл.500}}_{\text{х.х}} = \PhhBtRUVN; \quad
-P^{\text{бл.220}}_{\text{х.х}} = \PhhBtRUSN; \quad
-P^{\text{АТ.вар1}}_{\text{х.х}} = \PhhAtVarOne; \quad
-P^{\text{АТ.вар2}}_{\text{х.х}} = \PhhAtVarTwo\ \text{кВт}
+\Delta P^{\text{бл.500}}_{\text{х}} = \PhhBtRUVN; \quad
+\Delta P^{\text{бл.220}}_{\text{х}} = \PhhBtRUSN; \quad
+\Delta P^{\text{АТ.вар1}}_{\text{х}} = \PhhAtVarOne; \quad
+\Delta P^{\text{АТ.вар2}}_{\text{х}} = \PhhAtVarTwo\ \text{кВт}
 $$
 
 $$
-P^{\text{бл.500}}_{\text{к.з}} = \PkzBtRUVN; \quad
-P^{\text{бл.220}}_{\text{к.з}} = \PkzBtRUSN; \quad
-P^{\text{АТ.вар1}}_{\text{к.з}} = \PkzAtVarOne; \quad
-P^{\text{АТ.вар2}}_{\text{к.з}} = \PkzAtVarTwo\ \text{кВт}
+\Delta P^{\text{бл.500}}_{\text{к}} = \PkzBtRUVN; \quad
+\Delta P^{\text{бл.220}}_{\text{к}} = \PkzBtRUSN; \quad
+\Delta P^{\text{АТ.вар1}}_{\text{к}} = \PkzAtVarOne; \quad
+\Delta P^{\text{АТ.вар2}}_{\text{к}} = \PkzAtVarTwo\ \text{кВт}
 $$
 
 $$
 \begin{multline}
-W^{\text{вар1}}_{\text{х.х}} = 4 \cdot P^{\text{бл.500}}_{\text{х.х}} \cdot T_{\text{нб}}
-+ 2 \cdot P^{\text{АТ.вар1}}_{\text{х.х}} \cdot 8760 = \\
+\Delta W^{\text{вар1}}_{\text{х}} = 4 \cdot \Delta P^{\text{бл.500}}_{\text{х}} \cdot T_{\text{max}}
++ 2 \cdot \Delta P^{\text{АТ.вар1}}_{\text{х}} \cdot 8760 = \\
 = 4 \cdot \PhhBtRUVN \cdot \Tnb + 2 \cdot \PhhAtVarOne \cdot 8760
 = \WhhVarOne\ \text{кВт}\cdot\text{ч}
 \end{multline}
@@ -648,9 +649,9 @@ $$
 
 $$
 \begin{multline}
-W^{\text{вар2}}_{\text{х.х}} = 3 \cdot P^{\text{бл.500}}_{\text{х.х}} \cdot T_{\text{нб}}
-+ 1 \cdot P^{\text{бл.220}}_{\text{х.х}} \cdot T_{\text{нб}}
-+ 2 \cdot P^{\text{АТ.вар2}}_{\text{х.х}} \cdot 8760 = \\
+\Delta W^{\text{вар2}}_{\text{х}} = 3 \cdot \Delta P^{\text{бл.500}}_{\text{х}} \cdot T_{\text{max}}
++ 1 \cdot \Delta P^{\text{бл.220}}_{\text{х}} \cdot T_{\text{max}}
++ 2 \cdot \Delta P^{\text{АТ.вар2}}_{\text{х}} \cdot 8760 = \\
 = 3 \cdot \PhhBtRUVN \cdot \Tnb + 1 \cdot \PhhBtRUSN \cdot \Tnb
 + 2 \cdot \PhhAtVarTwo \cdot 8760
 = \WhhVarTwo\ \text{кВт}\cdot\text{ч}
@@ -659,7 +660,7 @@ $$
 
 $$
 \begin{multline}
-W^{\text{вар1}}_{\text{к.з.бл.500}} = \left[
+\Delta W^{\text{вар1}}_{\text{к.з.бл.500}} = \left[
 \sum\limits_{t=0}^{11}
 \left[\left(\frac{S^{\text{зим.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}}
 + \sum\limits_{t=0}^{11}
@@ -675,5 +676,5 @@ W^{\text{вар1}}_{\text{к.з.бл.500}} = \left[
 $$
 
 $$
-W^{\text{вар1}}_{\text{к.з.бл.220}} = \WkzBtRUSNVarOne\ \text{кВт}\cdot\text{ч}
+\Delta W^{\text{вар1}}_{\text{к.з.бл.220}} = \WkzBtRUSNVarOne\ \text{кВт}\cdot\text{ч}
 $$
