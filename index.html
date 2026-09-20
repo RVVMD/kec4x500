@@ -59,21 +59,19 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#1">Глава 1. Выбор структурной схемы</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_8">Проверка укрупнённых блоков</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">Проверка укрупненных блоков</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#_9">Выбор мощности блочных трансформаторов</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_10">Выбор числа генераторов, подключаемых к РУСН</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">Капиталовложения</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_11">Перетоки мощности через трансформаторы связи</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">Издержки на обслуживание и амортизацию</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_12">Выбор автотрансформаторов связи</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">Издержки связанные с потерями</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_13">Капиталовложения</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">Математическое ожидание ущерба</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_14">Издержки на обслуживание и амортизацию</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_15">Издержки, связанные с потерями</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_14">Расчет приведенных затрат</a>
     </li>
         </ul>
     </li>
@@ -131,7 +129,7 @@ window.MathJax = {
 <script src="js/tex-mml-svg.js" id="MathJax-script"></script>
 
 <h1 id="_1">Проектирование электрической части КЭС<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p><span class="arithmatex">\(\def\PnomG{500}\def\UnomG{20}\def\CosfG{0{,}85}\def\XdG{0{,}242}\def\RG{0{,}00114}\def\Ng{4}\def\PmaxPust{7}\def\UnomSN{6}\def\CosfSN{0{,}85}\def\UnomRUVN{500}\def\SnomSOne{7000}\def\XsOne{1{,}3}\def\PavrezSOne{600}\def\SnomSTwo{8500}\def\XsTwo{0{,}9}\def\PavrezSTwo{810}\def\LRuvnOne{500}\def\LRuvnTwo{800}\def\LRuvnThree{600}\def\LRuvnFour{700}\def\UnomRUSN{220}\def\PngRUSN{460}\def\CosfNGRUSN{0{,}85}\def\LRusnOne{500}\def\LRusnTwo{800}\def\LRusnThree{600}\def\LRusnFour{700}\def\DZim{215}\def\DLet{150}\def\LoadRusnZim{70 \\ 70 \\ 70 \\ 70 \\ 80 \\ 80 \\ 80 \\ 80 \\ 100 \\ 100 \\ 100 \\ 80}\def\LoadRusnLet{50 \\ 50 \\ 50 \\ 50 \\ 60 \\ 60 \\ 60 \\ 60 \\ 70 \\ 70 \\ 70 \\ 70}\def\LoadGenZim{80 \\ 80 \\ 80 \\ 100 \\ 100 \\ 100 \\ 100 \\ 100 \\ 100 \\ 100 \\ 100 \\ 80}\def\LoadGenLet{76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76}\def\Kper{1}\def\PTwoGen{1000}\def\SBlTrNorm{547}\def\SBlTrRem{588}\def\SBlTrMax{588}\def\NTS{2}\def\PPerTsZero{460}\def\PPerTsOne{-40}\def\PPerTsTwo{-540}\def\PPerTsThree{-1040}\def\NGRusnVarOne{0}\def\NGRusnVarTwo{1}\def\SSN{35}\def\ZimPerTsVarOneTen{-541}\def\SPerTsLow{379}\def\SPerTsMid{433}\def\SPerTsHigh{541}\def\Snb{541}\def\SnbNt{271}\def\SnomATVarOne{400}\def\HStroke{16}\def\SOne{379}\def\STwoPrime{476}\def\KOne{0{,}947}\def\KTwoPrime{1{,}19}\def\KMax{1{,}35}\def\KTwo{1{,}22}\def\HCoef{15{,}3}\def\KDopSistPer{1{,}23}\def\KDopAvPer{1{,}5}\def\KbtRUVN{585}\def\KbtRUSN{450}\def\KatVarOne{600}\def\KatVarTwo{876}\def\KqRUVN{170}\def\KqRUSN{100}\def\KVarOne{4760}\def\KVarTwo{5110}\def\KoRUSN{2{,}9}\def\KaRUSN{2}\def\IoAVarOne{233}\def\IoAVarTwo{250}\def\Tnb{7{,}55\cdot10^3}\def\TauValue{6{,}86\cdot10^3}\def\PhhBtRUVN{420}\def\PhhBtRUSN{345}\def\PhhAtVarOne{220}\def\PhhAtVarTwo{375}\def\PkzBtRUVN{1210}\def\PkzBtRUSN{1300}\def\PkzAtVarOne{1050}\def\PkzAtVarTwo{1410}\def\WhhVarOne{1{,}65\cdot10^7}\def\WhhVarTwo{1{,}87\cdot10^7}\def\WkzBtRUVNVarOne{2{,}79\cdot10^7}\def\WkzBtRUSNVarOne{0}\def\SumPZim{5600}\def\SumPLet{4560}\def\SngGZimLow{471}\def\SngGZimHigh{588}\def\SngGLet{447}\)</span></p>
+<p><span class="arithmatex">\(\def\PnomG{500}\def\UnomG{20}\def\CosfG{0{,}85}\def\XdG{0{,}242}\def\RG{0{,}00114}\def\Ng{4}\def\PmaxPust{7}\def\UnomSN{6}\def\CosfSN{0{,}85}\def\UnomRUVN{500}\def\SnomSOne{7000}\def\XsOne{1{,}3}\def\PavrezSOne{600}\def\SnomSTwo{8500}\def\XsTwo{0{,}9}\def\PavrezSTwo{810}\def\LRuvnOne{500}\def\LRuvnTwo{800}\def\LRuvnThree{600}\def\LRuvnFour{700}\def\UnomRUSN{220}\def\PngRUSN{460}\def\CosfNGRUSN{0{,}85}\def\LRusnOne{500}\def\LRusnTwo{800}\def\LRusnThree{600}\def\LRusnFour{700}\def\DZim{215}\def\DLet{150}\def\LoadRusnZim{70 \\ 70 \\ 70 \\ 70 \\ 80 \\ 80 \\ 80 \\ 80 \\ 100 \\ 100 \\ 100 \\ 80}\def\LoadRusnLet{50 \\ 50 \\ 50 \\ 50 \\ 60 \\ 60 \\ 60 \\ 60 \\ 70 \\ 70 \\ 70 \\ 70}\def\LoadGenZim{80 \\ 80 \\ 80 \\ 100 \\ 100 \\ 100 \\ 100 \\ 100 \\ 100 \\ 100 \\ 100 \\ 80}\def\LoadGenLet{76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76 \\ 76}\def\Kper{1}\def\PTwoGen{1000}\def\SBlTrNorm{547}\def\SBlTrRem{588}\def\SBlTrMax{588}\def\NTS{2}\def\PPerTsZero{460}\def\PPerTsOne{-40}\def\PPerTsTwo{-540}\def\PPerTsThree{-1040}\def\NGRusnVarOne{0}\def\NGRusnVarTwo{1}\def\SSN{35}\def\ZimPerTsVarOneTen{-541}\def\SPerTsLow{379}\def\SPerTsMid{433}\def\SPerTsHigh{541}\def\Snb{541}\def\SnbNt{271}\def\SnomATVarOne{400}\def\HStroke{16}\def\SOne{379}\def\STwoPrime{476}\def\KOne{0{,}947}\def\KTwoPrime{1{,}19}\def\KMax{1{,}35}\def\KTwo{1{,}22}\def\HCoef{15{,}3}\def\KDopSistPer{1{,}23}\def\KDopAvPer{1{,}5}\def\KbtRUVN{585}\def\KbtRUSN{450}\def\KatVarOne{600}\def\KatVarTwo{876}\def\KqRUVN{170}\def\KqRUSN{100}\def\KVarOne{4760}\def\KVarTwo{5110}\def\KoRUSN{2{,}9}\def\KaRUSN{2}\def\IoAVarOne{233}\def\IoAVarTwo{250}\def\Tnb{7{,}55\cdot10^3}\def\TauValue{6{,}86\cdot10^3}\def\PhhBtRUVN{420}\def\PhhBtRUSN{345}\def\PhhAtVarOne{220}\def\PhhAtVarTwo{375}\def\PkzBtRUVN{1210}\def\PkzBtRUSN{1300}\def\PkzAtVarOne{1050}\def\PkzAtVarTwo{1410}\def\WhhVarOne{1{,}65\cdot10^7}\def\WhhVarTwo{1{,}87\cdot10^7}\def\WkzBtRUVNVarOne{2{,}79\cdot10^7}\def\WkzBtRUSNVarOne{0}\def\SumPZim{5600}\def\SumPLet{4560}\def\SngGZimLow{471}\def\SngGZimHigh{588}\def\SngGLet{447}\def\WkzAtVarOne{1{,}16\cdot10^{6}}\def\WkzVarOne{2{,}91\cdot10^{7}}\def\WkzBtRUVNVarTwo{2{,}10\cdot10^{7}}\def\WkzBtRUSNVarTwo{7{,}50\cdot10^{6}}\def\WkzAtVarTwo{8{,}46\cdot10^{4}}\def\WkzVarTwo{2{,}85\cdot10^{7}}\def\Uxx{4{,}50\cdot10^{-6}}\def\Ukz{1{,}80\cdot10^{-5}}\def\IpVarOne{598}\def\IpVarTwo{598}\def\Y0{6{,}00\cdot10^{-5}}\def\TvtRUVN{220}\def\WtRUVN{0{,}05}\def\TvtRUSN{60}\def\WtRUSN{0{,}025}\def\TvvRUSN{55}\def\WvRUSN{0{,}02}\def\TvvRUVN{60}\def\WvRUVN{0{,}15}\def\MuVarOne{2{,}07\cdot10^{3}}\def\MuVarTwoRUVN{1{,}55\cdot10^{3}}\def\MuVarTwoRUSN{67{,}2}\def\MuVarTwo{1{,}62\cdot10^{3}}\def\En{0.12}\def\ZVarOne{3{,}47\cdot10^{3}}\def\ZVarTwo{3{,}08\cdot10^{3}}\def\ZRatio{1{,}13}\)</span></p>
 <h2 id="_2">Исходные данные<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="_3">Генераторы<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <table>
@@ -302,7 +300,7 @@ P^{\text{лет.}}_{\text{нг.г}},\ \% =
 \end{pmatrix}
 \]</div>
 <h2 id="1">Глава 1. Выбор структурной схемы<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<h3 id="_8">Проверка укрупнённых блоков<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h3 id="_8">Проверка укрупненных блоков<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
 P_{\text{ном.г}} \cdot 2 = \PnomG \cdot 2 = 1 \times 10^3\ \text{МВт}
 \]</div>
@@ -310,8 +308,9 @@ P_{\text{ном.г}} \cdot 2 = \PnomG \cdot 2 = 1 \times 10^3\ \text{МВт}
 P_{\text{ав.рез.с1}} = \PavrezSOne\ \text{МВт}; \qquad
 P_{\text{ав.рез.с2}} = \PavrezSTwo\ \text{МВт}
 \]</div>
-<p>Применять укрупнённые и объединённые блоки нельзя.</p>
+<p>Применять укрупненные и объединенные блоки нельзя.</p>
 <h3 id="_9">Выбор мощности блочных трансформаторов<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>Нормальный режим:</p>
 <div class="arithmatex">\[
 S_{\text{бл.тр.норм}} = \frac{P_{\text{ном.г}} - P_{\text{ном.г}} \cdot \dfrac{P_{\text{max.пуск.СН}}}{100}}{\cos\varphi_{\text{г}} \cdot K_{\text{пер}}}
 = \frac{\PnomG - \PnomG \cdot \dfrac{\PmaxPust}{100}}{\CosfG \cdot \Kper}
@@ -323,15 +322,16 @@ S_{\text{бл.тр.рем}} = \frac{P_{\text{ном.г}}}{\cos\varphi_{\text{г}
 = \frac{\PnomG}{\CosfG \cdot \Kper}
 = \SBlTrRem\ \text{МВА}
 \]</div>
-<p>Мощность блочного трансформатора принимается не менее</p>
+<p>Мощность трансформатора блочного не менее</p>
 <div class="arithmatex">\[
 \max\left(S_{\text{бл.тр.норм}};\ S_{\text{бл.тр.рем}}\right)
 = \max\left(\SBlTrNorm;\ \SBlTrRem\right) = \SBlTrMax\ \text{МВА}
 \]</div>
-<p>Согласно СТО РАО ЕЭС 2007, недопустимо применять один трансформатор связи,
-поэтому принимаем <span class="arithmatex">\(n_{\text{тс}} = \NTS\)</span>.</p>
-<h3 id="_10">Выбор числа генераторов, подключаемых к РУСН<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<p>Переток через трансформаторы связи при <span class="arithmatex">\(n_{\text{г.СН}}\)</span> генераторах на РУСН:</p>
+<p>Согласно СТО РАО ЕЭС 2007, недопустимо применять 1 трансформатор связи.</p>
+<div class="arithmatex">\[
+n_{\text{тс}} = \NTS
+\]</div>
+<p>При <span class="arithmatex">\(n\)</span> генераторах подключенных к РУСН:</p>
 <div class="arithmatex">\[
 P_{\text{пер.тс}} = P_{\text{нг.РУСН}} - n_{\text{г.СН}} \cdot P_{\text{ном.г}}
 \]</div>
@@ -358,8 +358,7 @@ P_{\text{пер.тс}} = P_{\text{нг.РУСН}} - n_{\text{г.СН}} \cdot P_{
 <div class="arithmatex">\[
 n_{\text{г.РУСН.вар1}} = \NGRusnVarOne; \qquad n_{\text{г.РУСН.вар2}} = \NGRusnVarTwo
 \]</div>
-<h3 id="_11">Перетоки мощности через трансформаторы связи<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<p>Мощности нагрузок:</p>
+<p>Построим график перетока мощности через трансформаторы связи для вар. 1</p>
 <div class="arithmatex">\[
 S^{\text{зим.}}_{\text{нг.РУСН}} = \frac{P^{\text{зим.}}_{\text{нг.РУСН}} \cdot P_{\text{нг.РУСН}}}{\cos\varphi_{\text{нг.РУСН}} \cdot 100};
 \qquad
@@ -374,12 +373,10 @@ S^{\text{лет.}}_{\text{нг.г}} = \frac{P^{\text{лет.}}_{\text{нг.г}} 
 <p><em>Рис. 5. Мощности нагрузки генераторов</em></p>
 <p><img alt="Мощности нагрузки РУСН" src="assets/img/power-rusn.svg" /></p>
 <p><em>Рис. 6. Мощности нагрузки РУСН</em></p>
-<p>Мощность собственных нужд:</p>
 <div class="arithmatex">\[
 S_{\text{сн}} = P_{\text{ном.г}} \cdot \frac{P_{\text{max.пуск.СН}}}{100}
 = \PnomG \cdot \frac{\PmaxPust}{100} = \SSN\ \text{МВА}
 \]</div>
-<p>Перетоки через трансформаторы связи:</p>
 <div class="arithmatex">\[
 S^{\text{зим.}}_{\text{пер.тс.вар1}} = n_{\text{г.РУСН.вар1}} \cdot \left(S^{\text{зим.}}_{\text{нг.г}} - S_{\text{сн}}\right) - S^{\text{зим.}}_{\text{нг.РУСН}}
 \]</div>
@@ -396,23 +393,21 @@ S^{\text{лет.}}_{\text{пер.тс.вар2}} = n_{\text{г.РУСН.вар2}}
 <p><em>Рис. 7. Переток мощности через трансформаторы связи, вариант 1</em></p>
 <p><img alt="Переток мощности через трансформаторы связи, вариант 2" src="assets/img/perets-var2.svg" /></p>
 <p><em>Рис. 8. Переток мощности через трансформаторы связи, вариант 2</em></p>
-<h3 id="_12">Выбор автотрансформаторов связи<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<p>Для варианта 2 (1 генератор на РУСН) окончательно выбираем группу из трёх
-однофазных автотрансформаторов АОДЦТН-267000/500/220.</p>
-<p>Для варианта 1 (0 генераторов на РУСН) в нормальном режиме наибольший переток
-определяется по зимнему графику:</p>
+<p>Для варианта 2 (1 генератор на РУСН) окончательно выбираем группу из 3-х
+однофазных трансформаторов АОДЦТН-267000/500/220.</p>
+<p>Для варианта 1 (0 генераторов на РУСН). В нормальном режиме:</p>
 <div class="arithmatex">\[
 S_{\text{нб}} = \left| \left( S^{\text{зим.}}_{\text{пер.тс.вар1}} \right)_{10} \right|
 = \left| \ZimPerTsVarOneTen \right| = \Snb\ \text{МВА}
 \]</div>
-<p>Мощность автотрансформатора принимается не менее</p>
 <div class="arithmatex">\[
 S_{\text{ном.АТ.вар1}} \ge \frac{S_{\text{нб}}}{n_{\text{т}}}
 = \frac{\Snb}{\NTS} = \SnbNt\ \text{МВА};
 \qquad S_{\text{ном.АТ.вар1}} = \SnomATVarOne\ \text{МВА}
 \]</div>
-<p>Приведённое число часов <span class="arithmatex">\(h' = \HStroke\)</span>.</p>
-<p>Эквивалентные ступени графика:</p>
+<div class="arithmatex">\[
+h' = \HStroke
+\]</div>
 <div class="arithmatex">\[
 S_1 = \sqrt{\frac{\sum\limits_{t=0}^{3}
 \left[ \left( S^{\text{зим.}}_{\text{пер.тс.вар1}} \right)_t^2 \cdot 2 \right]}{8}}
@@ -425,7 +420,6 @@ S'_2 = \sqrt{\frac{\sum\limits_{t=4}^{11}
 = \sqrt{\frac{\left(5 \cdot \SPerTsMid^2 + 3 \cdot \SPerTsHigh^2\right) \cdot 2}{\HStroke}}
 = \STwoPrime\ \text{МВА}
 \]</div>
-<p>Коэффициенты начальной нагрузки:</p>
 <div class="arithmatex">\[
 K_1 = \frac{S_1}{S_{\text{ном.АТ.вар1}}}
 = \frac{\SOne}{\SnomATVarOne} = \KOne
@@ -445,12 +439,11 @@ K_2 = K_{\max} \cdot 0{,}9 = \KMax \cdot 0{,}9 = \KTwo
 h = \frac{(K'_2)^2 \cdot h'}{(0{,}9 \cdot K_{\max})^2}
 = \frac{(\KTwoPrime)^2 \cdot \HStroke}{(0{,}9 \cdot \KMax)^2} = \HCoef
 \]</div>
-<p>Допустимые коэффициенты перегрузки:</p>
 <div class="arithmatex">\[
 K^{\text{сист.пер}}_{2\text{доп}} = \KDopSistPer; \qquad K^{\text{ав.пер}}_{2\text{доп}} = \KDopAvPer
 \]</div>
 <p>Окончательно выбираем АТДЦТН-400000/500/220.</p>
-<h3 id="_13">Капиталовложения<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h3 id="_10">Капиталовложения<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -496,7 +489,7 @@ K_{\text{вар2}} = 3 \cdot \KbtRUVN + 5 \cdot \KqRUVN + 2 \cdot \KatVarTwo
 + 1 \cdot \KbtRUSN + 3 \cdot \KqRUSN
 = \KVarTwo\ \text{тыс. у.е.}
 \]</div>
-<h3 id="_14">Издержки на обслуживание и амортизацию<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<h3 id="_11">Издержки на обслуживание и амортизацию<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
 K_{\text{о.220}} = \KoRUSN\ \%; \qquad K_{\text{а.220}} = \KaRUSN\ \%
 \]</div>
@@ -508,7 +501,7 @@ K_{\text{о.220}} = \KoRUSN\ \%; \qquad K_{\text{а.220}} = \KaRUSN\ \%
 \text{И}_{\text{о.а.вар2}} = K_{\text{вар2}} \cdot \frac{K_{\text{о.220}} + K_{\text{а.220}}}{100}
 = \KVarTwo \cdot \frac{\KoRUSN + \KaRUSN}{100} = \IoAVarTwo\ \text{тыс. у.е./год}
 \]</div>
-<h3 id="_15">Издержки, связанные с потерями<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<h3 id="_12">Издержки связанные с потерями<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
 P^{\text{зим.}}_{\text{нг.г}} = \frac{P^{\text{зим.}}_{\text{нг.г}},\ \%}{100} \cdot P_{\text{ном.г}}
 = \frac{P^{\text{зим.}}_{\text{нг.г}},\ \%}{100} \cdot \PnomG
@@ -583,6 +576,182 @@ T_{\text{max}} = \frac{\sum\limits_{t=0}^{11}
 <div class="arithmatex">\[
 \Delta W^{\text{вар1}}_{\text{к.з.бл.220}} = \WkzBtRUSNVarOne\ \text{кВт}\cdot\text{ч}
 \]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\Delta W^{\text{вар1}}_{\text{к.з.АТ}} = \frac{1}{2} \cdot \PkzAtVarOne \cdot \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{пер.тс.вар1}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}} +
+\right. \\
+\left.
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{пер.тс.вар1}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right]
+= \WkzAtVarOne\ \text{кВт}\cdot\text{ч}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\Delta W^{\text{вар1}}_{\text{к.з}} = \Delta W^{\text{вар1}}_{\text{к.з.бл.500}} + \Delta W^{\text{вар1}}_{\text{к.з.бл.220}} + \Delta W^{\text{вар1}}_{\text{к.з.АТ}}
+= \WkzBtRUVNVarOne + \WkzBtRUSNVarOne + \WkzAtVarOne
+= \WkzVarOne\ \text{кВт}\cdot\text{ч}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\Delta W^{\text{вар2}}_{\text{к.з.бл.500}} = \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}}
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right] \cdot 3 \cdot \PkzBtRUVN = \\
+= \left[
+\left(4 \cdot \left(\frac{\SngGZimLow}{630}\right)^2
++ 8 \cdot \left(\frac{\SngGZimHigh}{630}\right)^2\right) \cdot 2 \cdot \DZim
++ 12 \cdot \left(\frac{\SngGLet}{630}\right)^2 \cdot 2 \cdot \DLet
+\right] \cdot 3 \cdot \PkzBtRUVN
+= \WkzBtRUVNVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\Delta W^{\text{вар2}}_{\text{к.з.бл.220}} = \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}}
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right] \cdot 1 \cdot \PkzBtRUSN = \\
+= \left[
+\left(4 \cdot \left(\frac{\SngGZimLow}{630}\right)^2
++ 8 \cdot \left(\frac{\SngGZimHigh}{630}\right)^2\right) \cdot 2 \cdot \DZim
++ 12 \cdot \left(\frac{\SngGLet}{630}\right)^2 \cdot 2 \cdot \DLet
+\right] \cdot 1 \cdot \PkzBtRUSN
+= \WkzBtRUSNVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\Delta W^{\text{вар2}}_{\text{к.з.АТ}} = \frac{1}{2} \cdot \PkzAtVarTwo \cdot \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{пер.тс.вар2}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}} +
+\right. \\
+\left.
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{пер.тс.вар2}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right]
+= \WkzAtVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\Delta W^{\text{вар2}}_{\text{к.з}} = \Delta W^{\text{вар2}}_{\text{к.з.бл.500}} + \Delta W^{\text{вар2}}_{\text{к.з.бл.220}} + \Delta W^{\text{вар2}}_{\text{к.з.АТ}} = \\
+= \WkzBtRUVNVarTwo + \WkzBtRUSNVarTwo + \WkzAtVarTwo
+= \WkzVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+u_{\text{х.х}} = 0{,}45 \cdot 10^{-2} \cdot 10^{-3} = \Uxx\ \text{тыс. у.е./(кВт}\cdot\text{ч)}
+\]</div>
+<div class="arithmatex">\[
+u_{\text{к.з}} = 1{,}8 \cdot 10^{-2} \cdot 10^{-3} = \Ukz\ \text{тыс. у.е./(кВт}\cdot\text{ч)}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\text{И}_{\text{п.вар1}} = \Delta W^{\text{вар1}}_{\text{х.х}} \cdot u_{\text{х.х}} + \Delta W^{\text{вар1}}_{\text{к.з}} \cdot u_{\text{к.з}} = \\
+= \WhhVarOne \cdot \Uxx + \WkzVarOne \cdot \Ukz = \IpVarOne\ \text{тыс. у.е./год}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\text{И}_{\text{п.вар2}} = \Delta W^{\text{вар2}}_{\text{х.х}} \cdot u_{\text{х.х}} + \Delta W^{\text{вар2}}_{\text{к.з}} \cdot u_{\text{к.з}} = \\
+= \WhhVarTwo \cdot \Uxx + \WkzVarTwo \cdot \Ukz = \IpVarTwo\ \text{тыс. у.е./год}
+\end{multline}
+\]</div>
+<h3 id="_13">Математическое ожидание ущерба<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+у_0 = 0{,}06 \cdot 10^{-3} = \Y0\ \text{тыс. у.е./(кВт}\cdot\text{ч)}
+\]</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Параметр</th>
+<th style="text-align: center;">500 кВ</th>
+<th style="text-align: center;">220 кВ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(T_{\text{в.т}}\)</span>, ч</td>
+<td style="text-align: center;"><span class="arithmatex">\(\TvtRUVN\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\TvtRUSN\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(w_{\text{т}}\)</span>, 1/год</td>
+<td style="text-align: center;"><span class="arithmatex">\(\WtRUVN\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\WtRUSN\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(T_{\text{в.в}}\)</span>, ч</td>
+<td style="text-align: center;"><span class="arithmatex">\(\TvvRUVN\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\TvvRUSN\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(w_{\text{в}}\)</span>, 1/год</td>
+<td style="text-align: center;"><span class="arithmatex">\(\WvRUVN\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\WvRUSN\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="arithmatex">\[
+\begin{multline}
+\text{М(У)}_{\text{вар1}} = у_0 \cdot (n_{\text{г}} - n_{\text{г.РУСН.вар1}}) \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
+\cdot \left(w_{\text{т.500}} \cdot T_{\text{в.т.500}} + w_{\text{в.500}} \cdot T_{\text{в.в.500}}\right) \\
+= \Y0 \cdot (\Ng - \NGRusnVarOne) \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
+\cdot (\WtRUVN \cdot \TvtRUVN + \WvRUVN \cdot \TvvRUVN)
+= \MuVarOne\ \text{тыс. у.е./год}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\text{М(У)}_{\text{вар2.500}} = у_0 \cdot (n_{\text{г}} - n_{\text{г.РУСН.вар2}}) \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
+\cdot \left(w_{\text{т.500}} \cdot T_{\text{в.т.500}} + w_{\text{в.500}} \cdot T_{\text{в.в.500}}\right) \\
+= \Y0 \cdot (\Ng - \NGRusnVarTwo) \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
+\cdot (\WtRUVN \cdot \TvtRUVN + \WvRUVN \cdot \TvvRUVN)
+= \MuVarTwoRUVN\ \text{тыс. у.е./год}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\text{М(У)}_{\text{вар2.220}} = у_0 \cdot n_{\text{г.РУСН.вар2}} \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
+\cdot \left(w_{\text{т.220}} \cdot T_{\text{в.т.220}} + w_{\text{в.220}} \cdot T_{\text{в.в.220}}\right) \\
+= \Y0 \cdot \NGRusnVarTwo \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
+\cdot (\WtRUSN \cdot \TvtRUSN + \WvRUSN \cdot \TvvRUSN)
+= \MuVarTwoRUSN\ \text{тыс. у.е./год}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\text{М(У)}_{\text{вар2}} = \text{М(У)}_{\text{вар2.500}} + \text{М(У)}_{\text{вар2.220}}
+= \MuVarTwoRUVN + \MuVarTwoRUSN = \MuVarTwo\ \text{тыс. у.е./год}
+\]</div>
+<h3 id="_14">Расчет приведенных затрат<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+E_{\text{н}} = \En
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\text{З}_{\text{вар1}} = E_{\text{н}} \cdot K_{\text{вар1}} + \text{И}_{\text{о.а.вар1}} + \text{И}_{\text{п.вар1}} + \text{М(У)}_{\text{вар1}} = \\
+= \En \cdot \KVarOne + \IoAVarOne + \IpVarOne + \MuVarOne
+= \ZVarOne\ \text{тыс. у.е./год}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\begin{multline}
+\text{З}_{\text{вар2}} = E_{\text{н}} \cdot K_{\text{вар2}} + \text{И}_{\text{о.а.вар2}} + \text{И}_{\text{п.вар2}} + \text{М(У)}_{\text{вар2}} = \\
+= \En \cdot \KVarTwo + \IoAVarTwo + \IpVarTwo + \MuVarTwo
+= \ZVarTwo\ \text{тыс. у.е./год}
+\end{multline}
+\]</div>
+<div class="arithmatex">\[
+\frac{\text{З}_{\text{вар1}}}{\text{З}_{\text{вар2}}} = \ZRatio
+\]</div>
+<p>Окончательно принимаем вариант 2 структурной схемы.</p>
               
             </div>
           </div><footer>
@@ -627,5 +796,5 @@ T_{\text{max}} = \frac{\sum\limits_{t=0}^{11}
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-09-20 03:55:36.935401+00:00
+Build Date UTC : 2026-09-20 20:04:27.651364+00:00
 -->
