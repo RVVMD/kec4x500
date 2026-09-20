@@ -31,70 +31,88 @@ window.MathJax = {
 from decimal import ROUND_HALF_UP, Decimal
 
 # генератор
-p_nom_g = 500                   # мощность, МВт
-u_nom_g = 20                    # напряжение, кВ
+p_nom_g = 500                   # МВт
+u_nom_g = 20                    # кВ
 cosf_g = 0.85
-xd2_g = 0.242                   # сопротивление, о.е.
-r_g = 0.00114                   # сопротивление, Ом
+xd2_g = 0.242                   # о.е.
+r_g = 0.00114                   # Ом
 n_g = 4
 
-# свои нужды
-pmax_pust = 7                   # нагрузка, %
-u_nom_sn = 6                    # напряжение, кВ
+# собственные нужды
+pmax_pust = 7                   # %
+u_nom_sn = 6                    # кВ
 cosf_sn = 0.85
 
-# шины 500 кВ
-u_nom_ruvn = 500                # напряжение, кВ
-s_nom_s1 = 7000                 # мощность С1, МВА
-x_s1 = 1.3                      # сопротивление С1, о.е.
-p_avrez_s1 = 600                # резерв С1, МВт
-s_nom_s2 = 8500                 # мощность С2, МВА
-x_s2 = 0.9                      # сопротивление С2, о.е.
-p_avrez_s2 = 810                # резерв С2, МВт
-l_ruvn = [500, 800, 600, 700]   # длины линий, км
+# РУВН
+u_nom_ruvn = 500                # кВ
+s_nom_s1 = 7000                 # МВА
+x_s1 = 1.3                      # о.е.
+p_avrez_s1 = 600                # МВт
+s_nom_s2 = 8500                 # МВА
+x_s2 = 0.9                      # о.е.
+p_avrez_s2 = 810                # МВт
+l_ruvn = [500, 800, 600, 700]   # км
 
-# шины 220 кВ
-u_nom_rusn = 220                # напряжение, кВ
-p_ng_rusn = 460                 # нагрузка, МВт
+# РУСН
+u_nom_rusn = 220                # кВ
+p_ng_rusn = 460                 # МВт
 cosf_ng_rusn = 0.85
-l_rusn = [500, 800, 600, 700]   # длины линий, км
+l_rusn = [500, 800, 600, 700]   # км
 
 # графики
-d_zim = 215                     # зимних дней
-d_let = 150                     # летних дней
+d_zim = 215                     # дней
+d_let = 150                     # дней
 load_rusn_zim = [70, 70, 70, 70, 80, 80, 80, 80, 100, 100, 100, 80]
 load_rusn_let = [50, 50, 50, 50, 60, 60, 60, 60, 70, 70, 70, 70]
 load_gen_zim = [80, 80, 80, 100, 100, 100, 100, 100, 100, 100, 100, 80]
 load_gen_let = [76] * 12
 
-# прочее
+# схемы
 k_per = 1
 n_ts = 2
 n_g_rusn_var1 = 0
 n_g_rusn_var2 = 1
 
 # капиталовложения
-k_bt_500 = 585                  # блочный трансформатор 500 кВ, тыс. у.е.
-k_bt_220 = 450                  # блочный трансформатор 220 кВ, тыс. у.е.
-k_at_var1 = 600                 # автотрансформатор вар. 1, тыс. у.е.
-k_at_unit = 292                 # однофазный автотрансформатор, тыс. у.е.
-k_q_500 = 170                   # ячейка 500 кВ, тыс. у.е.
-k_q_220 = 100                   # ячейка 220 кВ, тыс. у.е.
+k_bt_500 = 585                  # тыс. у.е.
+k_bt_220 = 450                  # тыс. у.е.
+k_at_var1 = 600                 # тыс. у.е.
+k_at_unit = 292                 # тыс. у.е.
+k_q_500 = 170                   # тыс. у.е.
+k_q_220 = 100                   # тыс. у.е.
 
 # издержки
-ko_220 = 2.9                    # обслуживание, %
-ka_220 = 2                      # амортизация, %
+ko_220 = 2.9                    # %
+ka_220 = 2                      # %
 
 # потери
-phh_bt_500 = 420                # х.х. блочного 500 кВ, кВт
-phh_bt_220 = 345                # х.х. блочного 220 кВ, кВт
-phh_at_var1 = 220               # х.х. автотрансформатора вар. 1, кВт
-phh_at_unit = 125               # х.х. однофазного, кВт
-pkz_bt_500 = 1210               # к.з. блочного 500 кВ, кВт
-pkz_bt_220 = 1300               # к.з. блочного 220 кВ, кВт
-pkz_at_var1 = 1050              # к.з. автотрансформатора вар. 1, кВт
-pkz_at_unit = 470               # к.з. однофазного, кВт
-s_nom_bt_500 = 630              # блочный трансформатор 500 кВ, МВА
+phh_bt_500 = 420                # кВт
+phh_bt_220 = 345                # кВт
+phh_at_var1 = 220               # кВт
+phh_at_unit = 125               # кВт
+pkz_bt_500 = 1210               # кВт
+pkz_bt_220 = 1300               # кВт
+pkz_at_var1 = 1050              # кВт
+pkz_at_unit = 470               # кВт
+s_nom_bt_500 = 630              # МВА
+
+# удельные стоимости потерь
+u_xx = 0.45e-2 * 1e-3           # тыс. у.е./(кВт*ч)
+u_kz = 1.8e-2 * 1e-3            # тыс. у.е./(кВт*ч)
+
+# ущерб
+y_0 = 0.06e-3                   # тыс. у.е./(кВт*ч)
+t_vt_500 = 220                  # ч
+w_t_500 = 0.05                  # 1/год
+t_vt_220 = 60
+w_t_220 = 0.025
+t_vv_220 = 55                   # ч
+w_v_220 = 0.02                  # 1/год
+t_vv_500 = 60
+w_v_500 = 0.15
+
+# норматив
+e_n = 0.12
 
 # число с запятой
 def dec(value, digits=None, sig=None):
@@ -127,6 +145,16 @@ def sf(value, n=3):
 	return text.replace(".", "{,}")
 
 
+# научная запись
+def sci(value, n=3):
+	d = Decimal(str(value))
+	if d == 0:
+		return "0"
+	exp = d.adjusted()
+	m = d.scaleb(-exp).quantize(Decimal(1).scaleb(-(n - 1)), rounding=ROUND_HALF_UP)
+	return format(m, "f").replace(".", "{,}") + r"\cdot10^{%d}" % exp
+
+
 p_two_gen = p_nom_g * 2
 snb_tb_norm = (p_nom_g - p_nom_g * pmax_pust / 100) / (cosf_g * k_per)
 snb_tb_rem = p_nom_g / (cosf_g * k_per)
@@ -134,13 +162,13 @@ snb_tb_max = max(snb_tb_norm, snb_tb_rem)
 ssn = p_nom_g * pmax_pust / 100
 p_per_ts = [p_ng_rusn - n * p_nom_g for n in range(4)]
 
-# мощности нагрузок
+# нагрузки
 s_ng_rusn_zim = [p * p_ng_rusn / (100 * cosf_ng_rusn) for p in load_rusn_zim]
 s_ng_rusn_let = [p * p_ng_rusn / (100 * cosf_ng_rusn) for p in load_rusn_let]
 s_ng_g_zim = [p * p_nom_g / (100 * cosf_g) for p in load_gen_zim]
 s_ng_g_let = [p * p_nom_g / (100 * cosf_g) for p in load_gen_let]
 
-# перетоки через трансформаторы связи
+# перетоки
 s_per_ts_zim_var1 = [n_g_rusn_var1 * (a - ssn) - b for a, b in zip(s_ng_g_zim, s_ng_rusn_zim)]
 s_per_ts_let_var1 = [n_g_rusn_var1 * (a - ssn) - b for a, b in zip(s_ng_g_let, s_ng_rusn_let)]
 s_per_ts_zim_var2 = [n_g_rusn_var2 * (a - ssn) - b for a, b in zip(s_ng_g_zim, s_ng_rusn_zim)]
@@ -166,7 +194,7 @@ k_at_var2 = 3 * k_at_unit
 k_var1 = 4 * k_bt_500 + 6 * k_q_500 + 2 * k_at_var1 + 2 * k_q_220
 k_var2 = 3 * k_bt_500 + 5 * k_q_500 + 2 * k_at_var2 + 1 * k_bt_220 + 3 * k_q_220
 
-# издержки на обслуживание и амортизацию
+# издержки
 i_o_a_var1 = k_var1 * (ko_220 + ka_220) / 100
 i_o_a_var2 = k_var2 * (ko_220 + ka_220) / 100
 
@@ -182,6 +210,30 @@ whh_var2 = 3 * phh_bt_500 * tnb + 1 * phh_bt_220 * tnb + 2 * phh_at_var2 * 8760
 wkz_bt_500_var1 = (sum((v / s_nom_bt_500) ** 2 * 2 for v in s_ng_g_zim) * d_zim
 	+ sum((v / s_nom_bt_500) ** 2 * 2 for v in s_ng_g_let) * d_let) * 4 * pkz_bt_500
 wkz_bt_220_var1 = 0
+wkz_at_var1 = (sum((v / 800) ** 2 * 2 for v in s_per_ts_zim_var1) * d_zim
+	+ sum((v / 800) ** 2 * 2 for v in s_per_ts_let_var1) * d_let) * pkz_at_var1 / 2
+wkz_var1 = wkz_bt_500_var1 + wkz_bt_220_var1 + wkz_at_var1
+wkz_bt_500_var2 = (sum((v / s_nom_bt_500) ** 2 * 2 for v in s_ng_g_zim) * d_zim
+	+ sum((v / s_nom_bt_500) ** 2 * 2 for v in s_ng_g_let) * d_let) * 3 * pkz_bt_500
+wkz_bt_220_var2 = (sum((v / s_nom_bt_500) ** 2 * 2 for v in s_ng_g_zim) * d_zim
+	+ sum((v / s_nom_bt_500) ** 2 * 2 for v in s_ng_g_let) * d_let) * 1 * pkz_bt_220
+wkz_at_var2 = (sum((v / 800) ** 2 * 2 for v in s_per_ts_zim_var2) * d_zim
+	+ sum((v / 800) ** 2 * 2 for v in s_per_ts_let_var2) * d_let) * pkz_at_var2 / 2
+wkz_var2 = wkz_bt_500_var2 + wkz_bt_220_var2 + wkz_at_var2
+
+# издержки на потери
+i_p_var1 = whh_var1 * u_xx + wkz_var1 * u_kz
+i_p_var2 = whh_var2 * u_xx + wkz_var2 * u_kz
+
+# ущерб
+mu_var1 = y_0 * (n_g - n_g_rusn_var1) * p_nom_g * 1e3 * (tnb / 8760) * (w_t_500 * t_vt_500 + w_v_500 * t_vv_500)
+mu_var2_500 = y_0 * (n_g - n_g_rusn_var2) * p_nom_g * 1e3 * (tnb / 8760) * (w_t_500 * t_vt_500 + w_v_500 * t_vv_500)
+mu_var2_220 = y_0 * n_g_rusn_var2 * p_nom_g * 1e3 * (tnb / 8760) * (w_t_220 * t_vt_220 + w_v_220 * t_vv_220)
+mu_var2 = mu_var2_500 + mu_var2_220
+
+# затраты
+z_var1 = e_n * k_var1 + i_o_a_var1 + i_p_var1 + mu_var1
+z_var2 = e_n * k_var2 + i_o_a_var2 + i_p_var2 + mu_var2
 
 TEX = {
 	"PnomG": str(p_nom_g),
@@ -278,6 +330,33 @@ TEX = {
 	"SngGZimLow": sf(s_ng_g_zim[0]),
 	"SngGZimHigh": sf(s_ng_g_zim[3]),
 	"SngGLet": sf(s_ng_g_let[0]),
+	"WkzAtVarOne": sci(wkz_at_var1),
+	"WkzVarOne": sci(wkz_var1),
+	"WkzBtRUVNVarTwo": sci(wkz_bt_500_var2),
+	"WkzBtRUSNVarTwo": sci(wkz_bt_220_var2),
+	"WkzAtVarTwo": sci(wkz_at_var2),
+	"WkzVarTwo": sci(wkz_var2),
+	"Uxx": sci(u_xx),
+	"Ukz": sci(u_kz),
+	"IpVarOne": sf(i_p_var1),
+	"IpVarTwo": sf(i_p_var2),
+	"Y0": sci(y_0),
+	"TvtRUVN": str(t_vt_500),
+	"WtRUVN": dec(w_t_500, 2),
+	"TvtRUSN": str(t_vt_220),
+	"WtRUSN": dec(w_t_220, 3),
+	"TvvRUSN": str(t_vv_220),
+	"WvRUSN": dec(w_v_220, 2),
+	"TvvRUVN": str(t_vv_500),
+	"WvRUVN": dec(w_v_500, 2),
+	"MuVarOne": sci(mu_var1),
+	"MuVarTwoRUVN": sci(mu_var2_500),
+	"MuVarTwoRUSN": sf(mu_var2_220),
+	"MuVarTwo": sci(mu_var2),
+	"En": str(e_n),
+	"ZVarOne": sci(z_var1),
+	"ZVarTwo": sci(z_var2),
+	"ZRatio": sf(z_var1 / z_var2),
 }
 
 print(r"\(" + "".join(r"\def\%s{%s}" % (k, v) for k, v in TEX.items()) + r"\)")
@@ -366,7 +445,7 @@ $$
 
 ## Глава 1. Выбор структурной схемы
 
-### Проверка укрупнённых блоков
+### Проверка укрупненных блоков
 
 $$
 P_{\text{ном.г}} \cdot 2 = \PnomG \cdot 2 = 1 \times 10^3\ \text{МВт}
@@ -377,9 +456,11 @@ P_{\text{ав.рез.с1}} = \PavrezSOne\ \text{МВт}; \qquad
 P_{\text{ав.рез.с2}} = \PavrezSTwo\ \text{МВт}
 $$
 
-Применять укрупнённые и объединённые блоки нельзя.
+Применять укрупненные и объединенные блоки нельзя.
 
 ### Выбор мощности блочных трансформаторов
+
+Нормальный режим:
 
 $$
 S_{\text{бл.тр.норм}} = \frac{P_{\text{ном.г}} - P_{\text{ном.г}} \cdot \dfrac{P_{\text{max.пуск.СН}}}{100}}{\cos\varphi_{\text{г}} \cdot K_{\text{пер}}}
@@ -395,19 +476,20 @@ S_{\text{бл.тр.рем}} = \frac{P_{\text{ном.г}}}{\cos\varphi_{\text{г}
 = \SBlTrRem\ \text{МВА}
 $$
 
-Мощность блочного трансформатора принимается не менее
+Мощность трансформатора блочного не менее
 
 $$
 \max\left(S_{\text{бл.тр.норм}};\ S_{\text{бл.тр.рем}}\right)
 = \max\left(\SBlTrNorm;\ \SBlTrRem\right) = \SBlTrMax\ \text{МВА}
 $$
 
-Согласно СТО РАО ЕЭС 2007, недопустимо применять один трансформатор связи,
-поэтому принимаем $n_{\text{тс}} = \NTS$.
+Согласно СТО РАО ЕЭС 2007, недопустимо применять 1 трансформатор связи.
 
-### Выбор числа генераторов, подключаемых к РУСН
+$$
+n_{\text{тс}} = \NTS
+$$
 
-Переток через трансформаторы связи при $n_{\text{г.СН}}$ генераторах на РУСН:
+При $n$ генераторах подключенных к РУСН:
 
 $$
 P_{\text{пер.тс}} = P_{\text{нг.РУСН}} - n_{\text{г.СН}} \cdot P_{\text{ном.г}}
@@ -421,9 +503,7 @@ $$
 n_{\text{г.РУСН.вар1}} = \NGRusnVarOne; \qquad n_{\text{г.РУСН.вар2}} = \NGRusnVarTwo
 $$
 
-### Перетоки мощности через трансформаторы связи
-
-Мощности нагрузок:
+Построим график перетока мощности через трансформаторы связи для вар. 1
 
 $$
 S^{\text{зим.}}_{\text{нг.РУСН}} = \frac{P^{\text{зим.}}_{\text{нг.РУСН}} \cdot P_{\text{нг.РУСН}}}{\cos\varphi_{\text{нг.РУСН}} \cdot 100};
@@ -445,14 +525,10 @@ $$
 
 *Рис. 6. Мощности нагрузки РУСН*
 
-Мощность собственных нужд:
-
 $$
 S_{\text{сн}} = P_{\text{ном.г}} \cdot \frac{P_{\text{max.пуск.СН}}}{100}
 = \PnomG \cdot \frac{\PmaxPust}{100} = \SSN\ \text{МВА}
 $$
-
-Перетоки через трансформаторы связи:
 
 $$
 S^{\text{зим.}}_{\text{пер.тс.вар1}} = n_{\text{г.РУСН.вар1}} \cdot \left(S^{\text{зим.}}_{\text{нг.г}} - S_{\text{сн}}\right) - S^{\text{зим.}}_{\text{нг.РУСН}}
@@ -478,20 +554,15 @@ $$
 
 *Рис. 8. Переток мощности через трансформаторы связи, вариант 2*
 
-### Выбор автотрансформаторов связи
+Для варианта 2 (1 генератор на РУСН) окончательно выбираем группу из 3-х
+однофазных трансформаторов АОДЦТН-267000/500/220.
 
-Для варианта 2 (1 генератор на РУСН) окончательно выбираем группу из трёх
-однофазных автотрансформаторов АОДЦТН-267000/500/220.
-
-Для варианта 1 (0 генераторов на РУСН) в нормальном режиме наибольший переток
-определяется по зимнему графику:
+Для варианта 1 (0 генераторов на РУСН). В нормальном режиме:
 
 $$
 S_{\text{нб}} = \left| \left( S^{\text{зим.}}_{\text{пер.тс.вар1}} \right)_{10} \right|
 = \left| \ZimPerTsVarOneTen \right| = \Snb\ \text{МВА}
 $$
-
-Мощность автотрансформатора принимается не менее
 
 $$
 S_{\text{ном.АТ.вар1}} \ge \frac{S_{\text{нб}}}{n_{\text{т}}}
@@ -499,9 +570,9 @@ S_{\text{ном.АТ.вар1}} \ge \frac{S_{\text{нб}}}{n_{\text{т}}}
 \qquad S_{\text{ном.АТ.вар1}} = \SnomATVarOne\ \text{МВА}
 $$
 
-Приведённое число часов $h' = \HStroke$.
-
-Эквивалентные ступени графика:
+$$
+h' = \HStroke
+$$
 
 $$
 S_1 = \sqrt{\frac{\sum\limits_{t=0}^{3}
@@ -516,8 +587,6 @@ S'_2 = \sqrt{\frac{\sum\limits_{t=4}^{11}
 = \sqrt{\frac{\left(5 \cdot \SPerTsMid^2 + 3 \cdot \SPerTsHigh^2\right) \cdot 2}{\HStroke}}
 = \STwoPrime\ \text{МВА}
 $$
-
-Коэффициенты начальной нагрузки:
 
 $$
 K_1 = \frac{S_1}{S_{\text{ном.АТ.вар1}}}
@@ -542,8 +611,6 @@ $$
 h = \frac{(K'_2)^2 \cdot h'}{(0{,}9 \cdot K_{\max})^2}
 = \frac{(\KTwoPrime)^2 \cdot \HStroke}{(0{,}9 \cdot \KMax)^2} = \HCoef
 $$
-
-Допустимые коэффициенты перегрузки:
 
 $$
 K^{\text{сист.пер}}_{2\text{доп}} = \KDopSistPer; \qquad K^{\text{ав.пер}}_{2\text{доп}} = \KDopAvPer
@@ -593,7 +660,7 @@ $$
 = \KVarTwo \cdot \frac{\KoRUSN + \KaRUSN}{100} = \IoAVarTwo\ \text{тыс. у.е./год}
 $$
 
-### Издержки, связанные с потерями
+### Издержки связанные с потерями
 
 $$
 P^{\text{зим.}}_{\text{нг.г}} = \frac{P^{\text{зим.}}_{\text{нг.г}},\ \%}{100} \cdot P_{\text{ном.г}}
@@ -678,3 +745,177 @@ $$
 $$
 \Delta W^{\text{вар1}}_{\text{к.з.бл.220}} = \WkzBtRUSNVarOne\ \text{кВт}\cdot\text{ч}
 $$
+
+$$
+\begin{multline}
+\Delta W^{\text{вар1}}_{\text{к.з.АТ}} = \frac{1}{2} \cdot \PkzAtVarOne \cdot \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{пер.тс.вар1}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}} +
+\right. \\
+\left.
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{пер.тс.вар1}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right]
+= \WkzAtVarOne\ \text{кВт}\cdot\text{ч}
+\end{multline}
+$$
+
+$$
+\Delta W^{\text{вар1}}_{\text{к.з}} = \Delta W^{\text{вар1}}_{\text{к.з.бл.500}} + \Delta W^{\text{вар1}}_{\text{к.з.бл.220}} + \Delta W^{\text{вар1}}_{\text{к.з.АТ}}
+= \WkzBtRUVNVarOne + \WkzBtRUSNVarOne + \WkzAtVarOne
+= \WkzVarOne\ \text{кВт}\cdot\text{ч}
+$$
+
+$$
+\begin{multline}
+\Delta W^{\text{вар2}}_{\text{к.з.бл.500}} = \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}}
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right] \cdot 3 \cdot \PkzBtRUVN = \\
+= \left[
+\left(4 \cdot \left(\frac{\SngGZimLow}{630}\right)^2
++ 8 \cdot \left(\frac{\SngGZimHigh}{630}\right)^2\right) \cdot 2 \cdot \DZim
++ 12 \cdot \left(\frac{\SngGLet}{630}\right)^2 \cdot 2 \cdot \DLet
+\right] \cdot 3 \cdot \PkzBtRUVN
+= \WkzBtRUVNVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+\Delta W^{\text{вар2}}_{\text{к.з.бл.220}} = \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}}
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{нг.г}}}{630}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right] \cdot 1 \cdot \PkzBtRUSN = \\
+= \left[
+\left(4 \cdot \left(\frac{\SngGZimLow}{630}\right)^2
++ 8 \cdot \left(\frac{\SngGZimHigh}{630}\right)^2\right) \cdot 2 \cdot \DZim
++ 12 \cdot \left(\frac{\SngGLet}{630}\right)^2 \cdot 2 \cdot \DLet
+\right] \cdot 1 \cdot \PkzBtRUSN
+= \WkzBtRUSNVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+\Delta W^{\text{вар2}}_{\text{к.з.АТ}} = \frac{1}{2} \cdot \PkzAtVarTwo \cdot \left[
+\sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{пер.тс.вар2}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}} +
+\right. \\
+\left.
++ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{пер.тс.вар2}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right]
+= \WkzAtVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+\Delta W^{\text{вар2}}_{\text{к.з}} = \Delta W^{\text{вар2}}_{\text{к.з.бл.500}} + \Delta W^{\text{вар2}}_{\text{к.з.бл.220}} + \Delta W^{\text{вар2}}_{\text{к.з.АТ}} = \\
+= \WkzBtRUVNVarTwo + \WkzBtRUSNVarTwo + \WkzAtVarTwo
+= \WkzVarTwo\ \text{кВт}\cdot\text{ч}
+\end{multline}
+$$
+
+$$
+u_{\text{х.х}} = 0{,}45 \cdot 10^{-2} \cdot 10^{-3} = \Uxx\ \text{тыс. у.е./(кВт}\cdot\text{ч)}
+$$
+
+$$
+u_{\text{к.з}} = 1{,}8 \cdot 10^{-2} \cdot 10^{-3} = \Ukz\ \text{тыс. у.е./(кВт}\cdot\text{ч)}
+$$
+
+$$
+\begin{multline}
+\text{И}_{\text{п.вар1}} = \Delta W^{\text{вар1}}_{\text{х.х}} \cdot u_{\text{х.х}} + \Delta W^{\text{вар1}}_{\text{к.з}} \cdot u_{\text{к.з}} = \\
+= \WhhVarOne \cdot \Uxx + \WkzVarOne \cdot \Ukz = \IpVarOne\ \text{тыс. у.е./год}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+\text{И}_{\text{п.вар2}} = \Delta W^{\text{вар2}}_{\text{х.х}} \cdot u_{\text{х.х}} + \Delta W^{\text{вар2}}_{\text{к.з}} \cdot u_{\text{к.з}} = \\
+= \WhhVarTwo \cdot \Uxx + \WkzVarTwo \cdot \Ukz = \IpVarTwo\ \text{тыс. у.е./год}
+\end{multline}
+$$
+
+### Математическое ожидание ущерба
+
+$$
+у_0 = 0{,}06 \cdot 10^{-3} = \Y0\ \text{тыс. у.е./(кВт}\cdot\text{ч)}
+$$
+
+| Параметр | 500 кВ | 220 кВ |
+| :--: | :--: | :--: |
+| $T_{\text{в.т}}$, ч | $\TvtRUVN$ | $\TvtRUSN$ |
+| $w_{\text{т}}$, 1/год | $\WtRUVN$ | $\WtRUSN$ |
+| $T_{\text{в.в}}$, ч | $\TvvRUVN$ | $\TvvRUSN$ |
+| $w_{\text{в}}$, 1/год | $\WvRUVN$ | $\WvRUSN$ |
+
+$$
+\begin{multline}
+\text{М(У)}_{\text{вар1}} = у_0 \cdot (n_{\text{г}} - n_{\text{г.РУСН.вар1}}) \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
+\cdot \left(w_{\text{т.500}} \cdot T_{\text{в.т.500}} + w_{\text{в.500}} \cdot T_{\text{в.в.500}}\right) \\
+= \Y0 \cdot (\Ng - \NGRusnVarOne) \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
+\cdot (\WtRUVN \cdot \TvtRUVN + \WvRUVN \cdot \TvvRUVN)
+= \MuVarOne\ \text{тыс. у.е./год}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+\text{М(У)}_{\text{вар2.500}} = у_0 \cdot (n_{\text{г}} - n_{\text{г.РУСН.вар2}}) \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
+\cdot \left(w_{\text{т.500}} \cdot T_{\text{в.т.500}} + w_{\text{в.500}} \cdot T_{\text{в.в.500}}\right) \\
+= \Y0 \cdot (\Ng - \NGRusnVarTwo) \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
+\cdot (\WtRUVN \cdot \TvtRUVN + \WvRUVN \cdot \TvvRUVN)
+= \MuVarTwoRUVN\ \text{тыс. у.е./год}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+\text{М(У)}_{\text{вар2.220}} = у_0 \cdot n_{\text{г.РУСН.вар2}} \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
+\cdot \left(w_{\text{т.220}} \cdot T_{\text{в.т.220}} + w_{\text{в.220}} \cdot T_{\text{в.в.220}}\right) \\
+= \Y0 \cdot \NGRusnVarTwo \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
+\cdot (\WtRUSN \cdot \TvtRUSN + \WvRUSN \cdot \TvvRUSN)
+= \MuVarTwoRUSN\ \text{тыс. у.е./год}
+\end{multline}
+$$
+
+$$
+\text{М(У)}_{\text{вар2}} = \text{М(У)}_{\text{вар2.500}} + \text{М(У)}_{\text{вар2.220}}
+= \MuVarTwoRUVN + \MuVarTwoRUSN = \MuVarTwo\ \text{тыс. у.е./год}
+$$
+
+### Расчет приведенных затрат
+
+$$
+E_{\text{н}} = \En
+$$
+
+$$
+\begin{multline}
+\text{З}_{\text{вар1}} = E_{\text{н}} \cdot K_{\text{вар1}} + \text{И}_{\text{о.а.вар1}} + \text{И}_{\text{п.вар1}} + \text{М(У)}_{\text{вар1}} = \\
+= \En \cdot \KVarOne + \IoAVarOne + \IpVarOne + \MuVarOne
+= \ZVarOne\ \text{тыс. у.е./год}
+\end{multline}
+$$
+
+$$
+\begin{multline}
+\text{З}_{\text{вар2}} = E_{\text{н}} \cdot K_{\text{вар2}} + \text{И}_{\text{о.а.вар2}} + \text{И}_{\text{п.вар2}} + \text{М(У)}_{\text{вар2}} = \\
+= \En \cdot \KVarTwo + \IoAVarTwo + \IpVarTwo + \MuVarTwo
+= \ZVarTwo\ \text{тыс. у.е./год}
+\end{multline}
+$$
+
+$$
+\frac{\text{З}_{\text{вар1}}}{\text{З}_{\text{вар2}}} = \ZRatio
+$$
+
+Окончательно принимаем вариант 2 структурной схемы.
