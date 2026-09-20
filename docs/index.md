@@ -286,6 +286,17 @@ TEX = {
 	"SPerTsLow": sf(s_ng_rusn_zim[0]),
 	"SPerTsMid": sf(s_ng_rusn_zim[4]),
 	"SPerTsHigh": sf(s_ng_rusn_zim[8]),
+	"SLetLow": sf(s_ng_rusn_let[0]),
+	"SLetMid": sf(s_ng_rusn_let[4]),
+	"SLetHigh": sf(s_ng_rusn_let[8]),
+	"SZTwoA": sf(s_per_ts_zim_var2[0]),
+	"SZTwoB": sf(s_per_ts_zim_var2[3]),
+	"SZTwoC": sf(s_per_ts_zim_var2[4]),
+	"SZTwoD": sf(s_per_ts_zim_var2[8]),
+	"SZTwoE": sf(s_per_ts_zim_var2[11]),
+	"SLTwoA": sf(s_per_ts_let_var2[0]),
+	"SLTwoB": sf(s_per_ts_let_var2[4]),
+	"SLTwoC": sf(s_per_ts_let_var2[8]),
 	"Snb": sf(snb),
 	"SnbNt": sf(snb_nt),
 	"SnomATVarOne": str(snom_at_var1),
@@ -684,11 +695,9 @@ T_{\text{max}} = \frac{\sum\limits_{t=0}^{11}
 $$
 
 $$
-\begin{multline}
-\tau = \frac{1}{3} \cdot T_{\text{max}} + \frac{2}{3} \cdot T_{\text{max}}^2 \cdot \frac{1}{8760} = \\
+\tau = \frac{1}{3} \cdot T_{\text{max}} + \frac{2}{3} \cdot T_{\text{max}}^2 \cdot \frac{1}{8760}
 = \frac{1}{3} \cdot \left(\Tnb\right) + \frac{2}{3} \cdot \left(\Tnb\right)^2 \cdot \frac{1}{8760}
 = \TauValue\ \text{ч}
-\end{multline}
 $$
 
 $$
@@ -750,13 +759,17 @@ $$
 \begin{multline}
 \Delta W^{\text{вар1}}_{\text{к.з.АТ}} = \frac{1}{2} \cdot \PkzAtVarOne \cdot \left[
 \sum\limits_{t=0}^{11}
-\left[\left(\frac{S^{\text{зим.}}_{\text{пер.тс.вар1}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}} +
-\right. \\
-\left.
-+ \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{зим.}}_{\text{пер.тс.вар1}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}} + \sum\limits_{t=0}^{11}
 \left[\left(\frac{S^{\text{лет.}}_{\text{пер.тс.вар1}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
-\right]
-= \WkzAtVarOne\ \text{кВт}\cdot\text{ч}
+\right] = \\
+= \frac{1}{2} \cdot \left[
+\left(4 \cdot \left(\frac{\SPerTsLow}{800}\right)^2
++ 5 \cdot \left(\frac{\SPerTsMid}{800}\right)^2
++ 3 \cdot \left(\frac{\SPerTsHigh}{800}\right)^2\right) \cdot 2 \cdot \DZim + \right. \\ \left.
++ \left(4 \cdot \left(\frac{\SLetLow}{800}\right)^2
++ 4 \cdot \left(\frac{\SLetMid}{800}\right)^2
++ 4 \cdot \left(\frac{\SLetHigh}{800}\right)^2\right) \cdot 2 \cdot \DLet
+\right] \cdot \PkzAtVarOne = \WkzAtVarOne\ \text{кВт}\cdot\text{ч}
 \end{multline}
 $$
 
@@ -804,13 +817,21 @@ $$
 \begin{multline}
 \Delta W^{\text{вар2}}_{\text{к.з.АТ}} = \frac{1}{2} \cdot \PkzAtVarTwo \cdot \left[
 \sum\limits_{t=0}^{11}
-\left[\left(\frac{S^{\text{зим.}}_{\text{пер.тс.вар2}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}} +
+\left[\left(\frac{S^{\text{зим.}}_{\text{пер.тс.вар2}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{зим}} + \sum\limits_{t=0}^{11}
+\left[\left(\frac{S^{\text{лет.}}_{\text{пер.тс.вар2}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
+\right] = \\
+= \frac{1}{2} \cdot \left[
+\left(3 \cdot \left(\frac{\SZTwoA}{800}\right)^2
++ 1 \cdot \left(\frac{\SZTwoB}{800}\right)^2
++ 4 \cdot \left(\frac{\SZTwoC}{800}\right)^2
++ 3 \cdot \left(\frac{\SZTwoD}{800}\right)^2
++ 1 \cdot \left(\frac{\SZTwoE}{800}\right)^2\right) \cdot 2 \cdot \DZim +
 \right. \\
 \left.
-+ \sum\limits_{t=0}^{11}
-\left[\left(\frac{S^{\text{лет.}}_{\text{пер.тс.вар2}}}{800}\right)_t^2 \cdot 2\right] \cdot d_{\text{лет}}
-\right]
-= \WkzAtVarTwo\ \text{кВт}\cdot\text{ч}
++ \left(4 \cdot \left(\frac{\SLTwoA}{800}\right)^2
++ 4 \cdot \left(\frac{\SLTwoB}{800}\right)^2
++ 4 \cdot \left(\frac{\SLTwoC}{800}\right)^2\right) \cdot 2 \cdot \DLet
+\right] \cdot \PkzAtVarTwo = \WkzAtVarTwo\ \text{кВт}\cdot\text{ч}
 \end{multline}
 $$
 
@@ -860,7 +881,7 @@ $$
 $$
 \begin{multline}
 \text{М(У)}_{\text{вар1}} = у_0 \cdot (n_{\text{г}} - n_{\text{г.РУСН.вар1}}) \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
-\cdot \left(w_{\text{т.500}} \cdot T_{\text{в.т.500}} + w_{\text{в.500}} \cdot T_{\text{в.в.500}}\right) \\
+\cdot \left(w_{\text{т.500}} \cdot T_{\text{в.т.500}} + w_{\text{в.500}} \cdot T_{\text{в.в.500}}\right) = \\
 = \Y0 \cdot (\Ng - \NGRusnVarOne) \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
 \cdot (\WtRUVN \cdot \TvtRUVN + \WvRUVN \cdot \TvvRUVN)
 = \MuVarOne\ \text{тыс. у.е./год}
@@ -870,7 +891,7 @@ $$
 $$
 \begin{multline}
 \text{М(У)}_{\text{вар2.500}} = у_0 \cdot (n_{\text{г}} - n_{\text{г.РУСН.вар2}}) \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
-\cdot \left(w_{\text{т.500}} \cdot T_{\text{в.т.500}} + w_{\text{в.500}} \cdot T_{\text{в.в.500}}\right) \\
+\cdot \left(w_{\text{т.500}} \cdot T_{\text{в.т.500}} + w_{\text{в.500}} \cdot T_{\text{в.в.500}}\right) = \\
 = \Y0 \cdot (\Ng - \NGRusnVarTwo) \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
 \cdot (\WtRUVN \cdot \TvtRUVN + \WvRUVN \cdot \TvvRUVN)
 = \MuVarTwoRUVN\ \text{тыс. у.е./год}
@@ -880,7 +901,7 @@ $$
 $$
 \begin{multline}
 \text{М(У)}_{\text{вар2.220}} = у_0 \cdot n_{\text{г.РУСН.вар2}} \cdot P_{\text{ном.г}} \cdot 10^3 \cdot \frac{T_{\text{max}}}{8760}
-\cdot \left(w_{\text{т.220}} \cdot T_{\text{в.т.220}} + w_{\text{в.220}} \cdot T_{\text{в.в.220}}\right) \\
+\cdot \left(w_{\text{т.220}} \cdot T_{\text{в.т.220}} + w_{\text{в.220}} \cdot T_{\text{в.в.220}}\right) = \\
 = \Y0 \cdot \NGRusnVarTwo \cdot \PnomG \cdot 10^3 \cdot \frac{\Tnb}{8760}
 \cdot (\WtRUSN \cdot \TvtRUSN + \WvRUSN \cdot \TvvRUSN)
 = \MuVarTwoRUSN\ \text{тыс. у.е./год}
